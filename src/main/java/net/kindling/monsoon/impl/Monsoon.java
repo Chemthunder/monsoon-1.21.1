@@ -1,5 +1,6 @@
 package net.kindling.monsoon.impl;
 
+import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
 import net.kindling.monsoon.impl.index.MonsoonItemGroups;
@@ -21,5 +22,7 @@ public class Monsoon implements ModInitializer {
         MonsoonBlocks.init();
 
 		LOGGER.info("Monsoons are brewing...");
+
+        ALib.registerModMenu(MOD_ID, 0x233e37);
 	}
 }
