@@ -23,7 +23,6 @@ public interface MonsoonItemGroups {
 
     static void init() {
         Registry.register(Registries.ITEM_GROUP, GROUP_KEY, MAIN);
-
         ItemGroupEvents.modifyEntriesEvent(GROUP_KEY).register(MonsoonItemGroups::addEntries);
     }
 

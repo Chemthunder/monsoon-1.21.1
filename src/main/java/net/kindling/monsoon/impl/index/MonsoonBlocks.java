@@ -12,10 +12,10 @@ public interface MonsoonBlocks {
     Block TEST_BLOCK = rant.registerWithItem("test_block", Block::new, AbstractBlock.Settings.copy(Blocks.ACACIA_WOOD));
 
     static void init() {
-
+        //
     }
 
     static void clientInit() {
-
+        //
     }
 }

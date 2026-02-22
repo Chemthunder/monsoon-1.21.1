@@ -1,4 +1,4 @@
-package net.kindling.monsoon.data.resources;
+package net.kindling.monsoon.datagen.resources;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -16,5 +16,8 @@ public class MonsoonLangGen extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         MonsoonItems.rant.registerLang(wrapperLookup, translationBuilder);
         MonsoonBlocks.rant.registerLang(wrapperLookup, translationBuilder);
+
+        // misc
+        translationBuilder.add("itemGroup.monsoon", "Monsoon");
     }
 }

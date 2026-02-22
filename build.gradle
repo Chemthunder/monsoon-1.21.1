@@ -38,6 +38,12 @@ repositories {
 
     // MixinSquared
     maven { url "https://maven.bawnorton.com/releases" }
+
+    // Veil
+    maven {
+        name = 'BlameJared Maven (CrT / Bookshelf)'
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 fabricApi {
@@ -73,6 +79,11 @@ dependencies {
 
     // trinkets
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")
+
+    // veil
+    modImplementation("foundry.veil:veil-fabric-${project.minecraft_version}:${project.veil_version}") {
+        exclude group: "maven.modrinth"
+    }
 }
 
 processResources {

@@ -10,10 +10,10 @@ import net.minecraft.world.World;
 public class GameUtils {
 
     public static boolean isAliveAndInSurvival(PlayerEntity player) {
-        return !player.isInCreativeMode() && !player.isDead() && !PlayerGameComponent.KEY.get(player).isDead;
+        return player != null && !player.isInCreativeMode() && !player.isDead() && !PlayerGameComponent.KEY.get(player).isDead;
     }
 
-    public void killPlayer(PlayerEntity player) {
+    public static void killPlayer(PlayerEntity player) {
         PlayerGameComponent game = PlayerGameComponent.KEY.get(player);
 
         game.isDead = true;
@@ -23,6 +23,6 @@ public class GameUtils {
     }
 
     public static boolean isGameActive(World world) {
-        return GameWorldComponent.KEY.get(world).isActive;
+        return world != null && GameWorldComponent.KEY.get(world).isActive;
     }
 }

@@ -5,10 +5,10 @@
   "name": "Monsoon",
   "description": "Heavy rains billow above; skies are heavy tonight.",
   "authors": [
-    "KindlingCinder",
-    "Chemthunder",
-    "eeverest",
-    "AcoYT"
+    "☆ KindlingCinder",
+    "☆ Chemthunder",
+    "☆ eeverest",
+    "☆ AcoYT"
   ],
   "contact": {
     "sources": "https://github.com/Chemthunder/monsoon-1.21.1"
@@ -24,7 +24,7 @@
       "net.kindling.monsoon.impl.MonsoonClient"
     ],
     "fabric-datagen": [
-      "net.kindling.monsoon.data.MonsoonDataGenerator"
+      "net.kindling.monsoon.datagen.MonsoonDataGenerator"
     ],
     "cardinal-components": [
       "net.kindling.monsoon.impl.cca.MonsoonComponents"

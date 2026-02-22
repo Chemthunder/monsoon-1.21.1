@@ -3,6 +3,7 @@ package net.kindling.monsoon.impl;
 import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
+import net.kindling.monsoon.impl.index.MonsoonEntities;
 import net.kindling.monsoon.impl.index.MonsoonItemGroups;
 import net.kindling.monsoon.impl.index.MonsoonItems;
 import net.minecraft.util.Identifier;
@@ -20,6 +21,7 @@ public class Monsoon implements ModInitializer {
         MonsoonItems.init();
         MonsoonItemGroups.init();
         MonsoonBlocks.init();
+        MonsoonEntities.init();
 
 		LOGGER.info("Monsoons are brewing...");
 

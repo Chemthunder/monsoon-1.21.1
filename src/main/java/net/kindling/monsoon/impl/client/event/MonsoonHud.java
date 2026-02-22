@@ -13,19 +13,16 @@ public class MonsoonHud implements HudRenderCallback {
 
     public void onHudRender(DrawContext drawContext, RenderTickCounter renderTickCounter) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
-        if (player != null) {
-            if (GameUtils.isAliveAndInSurvival(player)) {
-                drawContext.drawTextWithShadow(
-                        textRenderer,
-                        Text.literal("test"),
-                        drawContext.getScaledWindowWidth() / 2 + 15,
-                        drawContext.getScaledWindowHeight() / 2,
-                        0xffffff
-                );
-            }
+        if (GameUtils.isAliveAndInSurvival(player)) {
+            drawContext.drawTextWithShadow(
+                    textRenderer,
+                    Text.literal("test"),
+                    drawContext.getScaledWindowWidth() / 2 - 10,
+                    drawContext.getScaledWindowHeight() / 2 - 15,
+                    0xffffff
+            );
         }
     }
 }
