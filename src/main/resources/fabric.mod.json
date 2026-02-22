@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "monsoon",
+  "version": "${version}",
+  "name": "Monsoon",
+  "description": "Heavy rains billow above; skies are heavy tonight.",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/monsoon/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.kindling.monsoon.impl.Monsoon"
+    ],
+    "client": [
+      "net.kindling.monsoon.impl.MonsoonClient"
+    ],
+    "fabric-datagen": [
+      "net.kindling.monsoon.data.MonsoonDataGenerator"
+    ],
+    "cardinal-components": [
+      "net.kindling.monsoon.impl.cca.MonsoonComponents"
+    ]
+  },
+  "mixins": [
+    "monsoon.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "cardinal-components": [
+      "monsoon:game",
+      "monsoon:player"
+    ]
+  }
+}
