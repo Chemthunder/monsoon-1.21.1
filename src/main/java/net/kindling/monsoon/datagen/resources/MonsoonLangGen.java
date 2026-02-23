@@ -19,5 +19,9 @@ public class MonsoonLangGen extends FabricLanguageProvider {
 
         // misc
         translationBuilder.add("itemGroup.monsoon", "Monsoon");
+
+        translationBuilder.add("monsoon.misc.itemreadout.empty", "Empty");
+        translationBuilder.add("monsoon.misc.itemreadout.filled", "Holding: ");
+
     }
 }

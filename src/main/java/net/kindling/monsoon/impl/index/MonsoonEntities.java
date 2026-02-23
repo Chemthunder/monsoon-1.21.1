@@ -6,7 +6,6 @@ import net.kindling.monsoon.impl.entity.AirshipEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import org.jetbrains.annotations.ApiStatus;
 
 @SuppressWarnings("all")
 public interface MonsoonEntities {

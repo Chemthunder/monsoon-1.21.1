@@ -12,6 +12,7 @@ public interface MonsoonItems {
     Item TEST_ITEM = rant.register("test_item", TestItem::new, new Item.Settings());
     Item FLASHLIGHT = rant.register("flashlight", FlashlightItem::new, new Item.Settings().maxCount(1));
 
+
     static void init() {
         //
     }

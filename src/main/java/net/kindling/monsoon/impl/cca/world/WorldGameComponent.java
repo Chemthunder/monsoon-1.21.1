@@ -9,12 +9,12 @@ import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
-public class GameWorldComponent implements AutoSyncedComponent, CommonTickingComponent {
-    public static final ComponentKey<GameWorldComponent> KEY = ComponentRegistry.getOrCreate(Monsoon.id("game"), GameWorldComponent.class);
+public class WorldGameComponent implements AutoSyncedComponent, CommonTickingComponent {
+    public static final ComponentKey<WorldGameComponent> KEY = ComponentRegistry.getOrCreate(Monsoon.id("game"), WorldGameComponent.class);
     private final World world;
     public boolean isActive = false;
 
-    public GameWorldComponent(World world) {
+    public WorldGameComponent(World world) {
         this.world = world;
     }
 

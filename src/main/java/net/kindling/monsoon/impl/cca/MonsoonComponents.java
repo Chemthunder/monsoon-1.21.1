@@ -1,7 +1,7 @@
 package net.kindling.monsoon.impl.cca;
 
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
-import net.kindling.monsoon.impl.cca.world.GameWorldComponent;
+import net.kindling.monsoon.impl.cca.world.WorldGameComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
@@ -16,6 +16,6 @@ public class MonsoonComponents implements EntityComponentInitializer, WorldCompo
     }
 
     public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-        registry.register(GameWorldComponent.KEY, GameWorldComponent::new);
+        registry.register(WorldGameComponent.KEY, WorldGameComponent::new);
     }
 }

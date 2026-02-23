@@ -1,6 +1,7 @@
 package net.kindling.monsoon.impl.client.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
 import net.kindling.monsoon.impl.util.GameUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -15,7 +16,41 @@ public class MonsoonHud implements HudRenderCallback {
         PlayerEntity player = MinecraftClient.getInstance().player;
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
+        int centerX = drawContext.getScaledWindowWidth() / 2;
+        int centerY = drawContext.getScaledWindowHeight() / 2;
+
         if (GameUtils.isAliveAndInSurvival(player)) {
+            PlayerGameComponent playerGameComponent = PlayerGameComponent.KEY.get(player);
+
+            int itemX = centerX - 110;
+            int itemY = centerY + 70;
+            boolean shouldRender = false;
+
+            if (!GameUtils.getHeldStack(player).isEmpty()) {
+                if (shouldRender) {
+                    drawContext.drawItem(GameUtils.getHeldStack(player),
+                            itemX,
+                            itemY
+                    );
+
+                    drawContext.drawTextWithShadow(
+                            textRenderer,
+                            Text.translatable("monsoon.misc.itemreadout.filled " + GameUtils.getHeldStack(player)),
+                            itemX,
+                            itemY + 10,
+                            0xffffff
+                    );
+                }
+            } else {
+                drawContext.drawTextWithShadow(
+                        textRenderer,
+                        Text.translatable("monsoon.misc.itemreadout.empty"),
+                        itemX,
+                        itemY,
+                        0xffffff
+                );
+            }
+
             drawContext.drawTextWithShadow(
                     textRenderer,
                     Text.literal("test"),
