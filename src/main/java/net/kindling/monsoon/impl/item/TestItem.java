@@ -13,15 +13,31 @@ public class TestItem extends Item {
         super(settings);
     }
 
+    private static boolean green = false;
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        MonsoonFog.getFog()
-                .setFogStart(30.0F)
-                .setFogEnd(50.0F)
-                .setFogThickness(0.7F)
-                .setHeightFalloff(0.0F)
-                .setChaos(0.3F)
-                .setFogColor(0.6F, 0.1F, 0.1F);
+        if (!green) {
+            MonsoonFog.getFog()
+                    .setFogStart(8.0F)
+                    .setFogEnd(30.0F)
+                    .setFogThickness(2.0F)
+                    .setHeightFalloff(0.0F)
+                    .setChaos(0.3F)
+                    .setFogColor(0.6F, 0.1F, 0.1F);
+
+            green = true;
+        } else {
+            MonsoonFog.getFog()
+                    .setFogStart(30.0F)
+                    .setFogEnd(50.0F)
+                    .setFogThickness(0.7F)
+                    .setHeightFalloff(0.0F)
+                    .setChaos(0.3F)
+                    .setFogColor(0.0F, 0.5F, 0.2F);
+
+            green = false;
+        }
 
         return super.use(world, user, hand);
     }

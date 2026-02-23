@@ -12,6 +12,8 @@ uniform float uCameraY;
 uniform float VeilRenderTime;
 uniform vec3  uFogColor;
 
+const float FOG_CURVE_STRENGTH = 8.0;
+
 in vec2 texCoord;
 out vec4 fragColor;
 
@@ -56,8 +58,12 @@ void main() {
     vec3 pos = screenToLocalSpace(texCoord, depth).xyz;
     float dist = length(pos);
 
-    float fogFactor = clamp((dist - uFogStart) / max(uFogEnd - uFogStart, 0.001), 0.0, 1.0);
-    fogFactor = 1.0 - exp(-fogFactor * 3.0); // exponential easing
+    float effectiveFogEnd = mix(uFogEnd, uFogStart + (uFogEnd - uFogStart) * 0.15, clamp(uFogThickness, 0.0, 1.0));
+
+    float fogFactor = clamp((dist - uFogStart) / max(effectiveFogEnd - uFogStart, 0.001), 0.0, 1.0);
+
+    float fogCurve = mix(1.0, FOG_CURVE_STRENGTH, clamp(uFogThickness, 0.0, 1.0));
+    fogFactor = 1.0 - exp(-fogFactor * fogCurve);
 
     float worldY = pos.y + uCameraY;
     float heightFactor = exp(-max(worldY, 0.0) * uHeightFalloff);
@@ -69,6 +75,12 @@ void main() {
     float distortion = mix(1.0, n, uChaos);
 
     fogFactor = clamp(fogFactor * heightFactor * distortion * uFogThickness, 0.0, 1.0);
+
+    float solidThreshold = mix(2.0, 0.95, clamp(uFogThickness, 0.0, 1.0));
+    if (fogFactor >= solidThreshold) {
+        fragColor = vec4(uFogColor, 1.0);
+        return;
+    }
 
     fragColor = vec4(mix(sceneColor, uFogColor, fogFactor), 1.0);
 }

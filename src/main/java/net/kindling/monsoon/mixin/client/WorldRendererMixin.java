@@ -7,5 +7,4 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BackgroundRenderer.class)
 public class WorldRendererMixin {
-    @WrapMethod(method = "applyFog")
 }
