@@ -10,7 +10,6 @@
     "client": [
         "client.BackgroundRendererMixin",
         "client.DimensionEffectsMixin",
-        "client.HeldItemRendererMixin",
         "client.InGameHudMixin",
         "client.WorldRendererMixin"
     ],

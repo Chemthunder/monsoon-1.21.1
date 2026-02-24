@@ -12,7 +12,7 @@ import net.minecraft.sound.BlockSoundGroup;
 public interface MonsoonBlocks {
     BlockRegistrant BLOCKS = new BlockRegistrant(Monsoon.MOD_ID);
 
-    Block SWITCH = BLOCKS.registerWithItem("switch", SwitchBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BARS));
+    Block SWITCH = BLOCKS.registerWithItem("switch", SwitchBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BARS).noBlockBreakParticles());
 
     Block TEST_BLOCK = BLOCKS.registerWithItem("test_block", Block::new, AbstractBlock.Settings.copy(Blocks.ACACIA_WOOD));
     Block CREDITS_BLOCK = BLOCKS.registerWithItem("credits_block", CreditsBlock::new, AbstractBlock.Settings.copy(Blocks.BEDROCK).sounds(BlockSoundGroup.INTENTIONALLY_EMPTY).noBlockBreakParticles());

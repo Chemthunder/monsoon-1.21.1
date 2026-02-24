@@ -13,7 +13,7 @@ import net.minecraft.client.MinecraftClient;
 
 public class MonsoonClient implements ClientModInitializer {
     public void onInitializeClient() {
-        // Initialization
+        /* Initialization */
         MonsoonBlockEntities.clientInit();
         MonsoonBlocks.clientInit();
         MonsoonEntities.clientInit();
@@ -21,7 +21,7 @@ public class MonsoonClient implements ClientModInitializer {
 
         MonsoonModelLayers.init();
 
-        // Events
+        /* Events */
         HudRenderCallback.EVENT.register(new MonsoonHudEvent());
     }
 

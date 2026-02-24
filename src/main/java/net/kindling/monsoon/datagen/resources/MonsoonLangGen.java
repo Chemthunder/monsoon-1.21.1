@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
 import net.kindling.monsoon.impl.index.MonsoonItems;
+import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,13 +19,11 @@ public class MonsoonLangGen extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         MonsoonItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
         MonsoonBlocks.BLOCKS.registerLang(wrapperLookup, translationBuilder);
+        MonsoonSoundEvents.SOUND_EVENTS.registerLang(wrapperLookup, translationBuilder);
 
         // Misc
         translationBuilder.add("itemGroup.monsoon", "Monsoon");
-
-        translationBuilder.add("monsoon.misc.itemReadout.empty", "Empty");
-        translationBuilder.add("monsoon.misc.itemReadout.filled", "Holding: %s");
-
+        translationBuilder.add("monsoon.misc.itemReadout", "Holding: %s");
     }
 
     // MidnightConfig

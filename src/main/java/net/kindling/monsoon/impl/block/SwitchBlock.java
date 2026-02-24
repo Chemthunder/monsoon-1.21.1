@@ -3,6 +3,7 @@ package net.kindling.monsoon.impl.block;
 import com.mojang.serialization.MapCodec;
 import net.kindling.monsoon.impl.block.entity.SwitchBlockEntity;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
+import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.kindling.monsoon.impl.util.ModUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -10,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -54,6 +56,10 @@ public class SwitchBlock extends BlockWithEntity implements Waterloggable {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof SwitchBlockEntity switchBlock) {
             switchBlock.flip();
+
+            if (switchBlock.isFlipped()) {
+                world.playSound(null, pos, MonsoonSoundEvents.SWITCH_2, SoundCategory.BLOCKS, 1, 1);
+            }
             return ActionResult.success(world.isClient);
         }
 

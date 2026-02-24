@@ -1,0 +1,15 @@
+{
+    "block.switch_1": {
+        "sounds": [
+            "monsoon:block/switch_1"
+        ],
+        "subtitle": "subtitles.monsoon.block.switch_1"
+    },
+
+    "block.switch_2": {
+        "sounds": [
+            "monsoon:block/switch_2"
+        ],
+        "subtitle": "subtitles.monsoon.block.switch_2"
+    }
+}

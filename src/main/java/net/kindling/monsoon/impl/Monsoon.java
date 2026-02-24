@@ -14,20 +14,21 @@ public class Monsoon implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public void onInitialize() {
-        // AcornLib
+        /* AcornLib */
         ALib.registerModMenu(MOD_ID, 0x233e37);
         MidnightConfig.init(MOD_ID, MonsoonConfig.class);
 
-        // Initialization
+        /* Initialization */
         MonsoonBlockEntities.init();
         MonsoonBlocks.init();
         MonsoonEntities.init();
         MonsoonItemGroups.init();
         MonsoonItems.init();
+        MonsoonSoundEvents.init();
 
-        // Events
+        /* Events */
 
-        // Networking
+        /* Networking */
 
         LOGGER.info("Monsoons are brewing...");
     }

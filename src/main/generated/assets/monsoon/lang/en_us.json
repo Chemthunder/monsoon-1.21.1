@@ -5,6 +5,5 @@
   "item.monsoon.flashlight": "Flashlight",
   "item.monsoon.test_item": "Test Item",
   "itemGroup.monsoon": "Monsoon",
-  "monsoon.misc.itemReadout.empty": "Empty",
-  "monsoon.misc.itemReadout.filled": "Holding: %s"
+  "monsoon.misc.itemReadout": "Holding: %s"
 }

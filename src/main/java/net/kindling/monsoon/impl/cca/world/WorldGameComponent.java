@@ -6,16 +6,15 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
-import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class WorldGameComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<WorldGameComponent> KEY = MiscUtils.getOrCreateKey(Monsoon.id("game"), WorldGameComponent.class);
     private final World world;
-    private boolean active = false;
 
-    private int ticks = 0;
+    private boolean active = false; // Whether the game is active or not (triggered by the Switch.)
+    private int ticks = 0; // How many ticks the game has been active.
 
     public WorldGameComponent(World world) {
         this.world = world;

@@ -26,7 +26,7 @@ public class MonsoonHudEvent implements HudRenderCallback {
             int itemY = centerY + 70;
             int offset = 5;
 
-            boolean shouldRender = true;
+            boolean shouldRender = true; // dev
 
             if (!GameUtils.getHeldStack(player).isEmpty()) {
                 if (shouldRender) {
@@ -37,7 +37,7 @@ public class MonsoonHudEvent implements HudRenderCallback {
 
                     drawContext.drawTextWithShadow(
                             textRenderer,
-                            Text.translatable("monsoon.misc.itemReadout.filled", GameUtils.getHeldStack(player).getName()),
+                            Text.translatable("monsoon.misc.itemReadout", GameUtils.getHeldStack(player).getName()),
                             itemX + 30,
                             itemY + offset,
                             0xffffff

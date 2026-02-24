@@ -3,7 +3,9 @@ package net.kindling.monsoon.impl.index;
 import net.acoyt.acornlib.api.registrants.BlockEntityTypeRegistrant;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.kindling.monsoon.impl.Monsoon;
+import net.kindling.monsoon.impl.block.entity.CreditsBlockEntity;
 import net.kindling.monsoon.impl.block.entity.SwitchBlockEntity;
+import net.kindling.monsoon.impl.client.block.render.CreditsBlockEntityRenderer;
 import net.kindling.monsoon.impl.client.block.render.SwitchBlockEntityRenderer;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -17,11 +19,17 @@ public interface MonsoonBlockEntities {
             FabricBlockEntityTypeBuilder.create(SwitchBlockEntity::new, MonsoonBlocks.SWITCH)
     );
 
+    BlockEntityType<CreditsBlockEntity> CREDITS = BLOCK_ENTITIES.register(
+            "credits",
+            FabricBlockEntityTypeBuilder.create(CreditsBlockEntity::new, MonsoonBlocks.CREDITS_BLOCK)
+    );
+
     static void init() {
         //
     }
 
     static void clientInit() {
         BlockEntityRendererFactories.register(SWITCH, ctx -> new SwitchBlockEntityRenderer(Monsoon.id("textures/entity/switch.png"), ctx));
+        BlockEntityRendererFactories.register(CREDITS, ctx -> new CreditsBlockEntityRenderer());
     }
 }

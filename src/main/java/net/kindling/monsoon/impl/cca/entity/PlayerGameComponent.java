@@ -14,10 +14,10 @@ public class PlayerGameComponent implements AutoSyncedComponent {
     public static final ComponentKey<PlayerGameComponent> KEY = MiscUtils.getOrCreateKey(Monsoon.id("player"), PlayerGameComponent.class);
     private final PlayerEntity player;
 
-    private boolean suited = false;
-    private boolean dead = false;
+    private boolean suited = false; // Whether the player currently has a suit on or not.
+    private boolean dead = false; // Whether the player is dead or not.
 
-    private ItemStack heldStack = ItemStack.EMPTY;
+    private ItemStack heldStack = ItemStack.EMPTY; // Currently held item, may remove.
 
     public PlayerGameComponent(PlayerEntity player) {
         this.player = player;
