@@ -12,7 +12,7 @@ public class FogRenderer {
             Identifier.of("monsoon", "custom_fog");
 
     private final FogSettings settings;
-    private long lastTime = -1;
+    private static long lastTime = -1;
 
     private PostPipeline cachedPipeline = null;
     private ShaderUniformAccess uFogStart;
@@ -66,5 +66,9 @@ public class FogRenderer {
                     settings.getFogColor().z
             );
         });
+    }
+
+    public static void resetFog() {
+        lastTime = -1;
     }
 }

@@ -46,8 +46,13 @@ repositories {
     }
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/monsoon.accesswidener")
+}
+
 fabricApi {
 	configureDataGeneration {
+        modId = "monsoon"
 		client = true
 	}
 }
@@ -84,6 +89,9 @@ dependencies {
     modImplementation("foundry.veil:veil-fabric-${project.minecraft_version}:${project.veil_version}") {
         exclude group: "maven.modrinth"
     }
+
+    // Extras
+    modImplementation "maven.modrinth:carpet:${project.carpet_version}"
 }
 
 processResources {

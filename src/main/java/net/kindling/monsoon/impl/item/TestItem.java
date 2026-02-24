@@ -1,9 +1,15 @@
 package net.kindling.monsoon.impl.item;
 
+import net.kindling.monsoon.impl.game.Game;
+import net.kindling.monsoon.impl.game.GameClient;
 import net.kindling.monsoon.impl.index.MonsoonFog;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -13,30 +19,39 @@ public class TestItem extends Item {
         super(settings);
     }
 
-    private static boolean green = false;
-
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!green) {
-            MonsoonFog.getFog()
-                    .setFogStart(8.0F)
-                    .setFogEnd(30.0F)
-                    .setFogThickness(2.0F)
-                    .setHeightFalloff(0.0F)
-                    .setChaos(0.3F)
-                    .setFogColor(0.6F, 0.1F, 0.1F);
+        if (user.getOffHandStack().isOf(this)) {
+            String string;
 
-            green = true;
+            if (!Game.isActive(world)) {
+                if (world.isClient && world instanceof ClientWorld clientWorld) {
+                    GameClient.startGame(clientWorld);
+                } else {
+                    Game.startGame(world);
+                }
+
+                string = "started";
+
+            } else {
+                if (world.isClient && world instanceof ClientWorld clientWorld) {
+                    GameClient.endGame(clientWorld);
+                }
+
+                Game.endGame(world);
+                string = "stopped";
+            }
+
+            user.sendMessage(Text.literal("Game has been: " + string), true);
+            user.playSoundToPlayer(SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.MASTER, 1, 1);
         } else {
             MonsoonFog.getFog()
-                    .setFogStart(30.0F)
-                    .setFogEnd(50.0F)
-                    .setFogThickness(0.7F)
+                    .setFogStart(20.0F)
+                    .setFogEnd(75.0F)
+                    .setFogThickness(0.9F)
                     .setHeightFalloff(0.0F)
-                    .setChaos(0.3F)
-                    .setFogColor(0.0F, 0.5F, 0.2F);
-
-            green = false;
+                    .setChaos(0.1F)
+                    .setFogColor(0F, 0F, 0F);
         }
 
         return super.use(world, user, hand);

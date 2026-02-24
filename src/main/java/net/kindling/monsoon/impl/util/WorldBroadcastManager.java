@@ -7,9 +7,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 
 public class WorldBroadcastManager {
-    public static void playSoundEventGlobally(SoundEvent sound, ServerWorld serverWorld, SoundCategory category, float pitch, float volume) {
+    public static void playSoundEventGlobally(ServerWorld serverWorld, SoundEvent sound, SoundCategory category, float volume, float pitch) {
         for (ServerPlayerEntity serverPlayer : serverWorld.getPlayers()) {
-            serverPlayer.playSoundToPlayer(sound, category, pitch, volume);
+            serverPlayer.playSoundToPlayer(sound, category, volume, pitch);
         }
     }
 
