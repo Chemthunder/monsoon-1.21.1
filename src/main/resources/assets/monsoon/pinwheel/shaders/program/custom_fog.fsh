@@ -51,7 +51,8 @@ void main() {
             fragColor = vec4(sceneColor, 1.0);
             return;
         }
-        fragColor = vec4(uFogColor, 1.0);
+        float skyFog = uFogThickness * 0.7;
+        fragColor = vec4(mix(sceneColor, uFogColor, skyFog), 1.0);
         return;
     }
 

@@ -5,6 +5,7 @@ import foundry.veil.api.client.render.post.PostPipeline;
 import foundry.veil.api.client.render.post.PostProcessingManager;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.fog.FogRenderer;
+import net.kindling.monsoon.impl.index.MonsoonFog;
 import net.minecraft.client.world.ClientWorld;
 
 import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
@@ -18,7 +19,7 @@ public class GameClient {
 
     public static void endGame(ClientWorld world) {
         disableFog();
-        FogRenderer.resetFog();
+        MonsoonFog.renderer.resetFog();
 
         ifDev(() -> Monsoon.LOGGER.info("Game ended successfully [CLIENT]"));
     }

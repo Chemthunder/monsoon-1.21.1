@@ -11,8 +11,8 @@ public class FogRenderer {
     private static final Identifier FOG_PIPELINE =
             Identifier.of("monsoon", "custom_fog");
 
-    private final FogSettings settings;
-    private static long lastTime = -1;
+    private FogSettings settings;
+    private long lastTime = -1;
 
     private PostPipeline cachedPipeline = null;
     private ShaderUniformAccess uFogStart;
@@ -68,7 +68,8 @@ public class FogRenderer {
         });
     }
 
-    public static void resetFog() {
+    public void resetFog() {
         lastTime = -1;
+        settings = FogSettings.defaultSettings();
     }
 }

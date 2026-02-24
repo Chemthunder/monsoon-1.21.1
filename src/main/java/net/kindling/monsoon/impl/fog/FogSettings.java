@@ -37,6 +37,16 @@ public class FogSettings {
         fogColor.lerp(targetFogColor, t);
     }
 
+    public static FogSettings defaultSettings() {
+        return new FogSettings(48F, 96F)
+                .setFogStart(8.0F)
+                .setFogEnd(30.0F)
+                .setFogThickness(1.0F)
+                .setHeightFalloff(0.0F)
+                .setChaos(0.3F)
+                .setFogColor(0.6F, 0.1F, 0.1F);
+    }
+    
     private float lerp(float a, float b, float t) { return a + (b - a) * t; }
 
     public FogSettings setFogStart(float v)          { targetFogStart = v;      return this; }
