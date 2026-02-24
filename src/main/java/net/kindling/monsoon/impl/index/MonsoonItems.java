@@ -6,10 +6,10 @@ import net.kindling.monsoon.impl.item.FlashlightItem;
 import net.minecraft.item.Item;
 
 public interface MonsoonItems {
-    ItemRegistrant rant = new ItemRegistrant(Monsoon.MOD_ID);
+    ItemRegistrant ITEMS = new ItemRegistrant(Monsoon.MOD_ID);
 
-    Item TEST_ITEM = rant.register("test_item", Item::new, new Item.Settings());
-    Item FLASHLIGHT = rant.register("flashlight", FlashlightItem::new, new Item.Settings().maxCount(1));
+    Item TEST_ITEM = ITEMS.register("test_item", Item::new, new Item.Settings());
+    Item FLASHLIGHT = ITEMS.register("flashlight", FlashlightItem::new, new Item.Settings().maxCount(1));
 
     static void init() {
         //

@@ -46,8 +46,13 @@ repositories {
     }
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/monsoon.accesswidener")
+}
+
 fabricApi {
 	configureDataGeneration {
+        modId = "monsoon"
 		client = true
 	}
 }

@@ -6,13 +6,12 @@ import net.kindling.monsoon.impl.entity.AirshipEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import org.jetbrains.annotations.ApiStatus;
 
 @SuppressWarnings("all")
 public interface MonsoonEntities {
-    EntityTypeRegistrant<Entity> rant = new EntityTypeRegistrant<>(Monsoon.MOD_ID);
+    EntityTypeRegistrant<Entity> ENTITIES = new EntityTypeRegistrant<>(Monsoon.MOD_ID);
 
-    EntityType AIRSHIP = rant.register("airship", EntityType.Builder.create(AirshipEntity::new, SpawnGroup.MISC).dimensions(1.0f, 1.0f).build());
+    EntityType AIRSHIP = ENTITIES.register("airship", EntityType.Builder.create(AirshipEntity::new, SpawnGroup.MISC).dimensions(1.0f, 1.0f).build());
 
     static void init() {
         //

@@ -8,7 +8,6 @@ import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 
 public class GameUtils {
-
     public static boolean isAliveAndInSurvival(PlayerEntity player) {
         return player != null && !player.isInCreativeMode() && !player.isDead() && !PlayerGameComponent.KEY.get(player).isDead;
     }

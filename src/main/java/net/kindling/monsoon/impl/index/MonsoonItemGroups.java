@@ -27,11 +27,11 @@ public interface MonsoonItemGroups {
     }
 
     private static void addEntries(FabricItemGroupEntries itemGroup) {
-        for (Item ITEMS : MonsoonItems.rant.toRegister) {
+        for (Item ITEMS : MonsoonItems.ITEMS.toRegister) {
             itemGroup.add(ITEMS);
         }
 
-        for (Block BLOCKS : MonsoonBlocks.rant.toRegister) {
+        for (Block BLOCKS : MonsoonBlocks.BLOCKS.toRegister) {
             itemGroup.add(BLOCKS);
         }
     }
