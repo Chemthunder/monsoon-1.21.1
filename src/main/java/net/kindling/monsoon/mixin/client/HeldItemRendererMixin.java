@@ -1,10 +1,9 @@
 package net.kindling.monsoon.mixin.client;
 
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
-import net.kindling.monsoon.impl.util.GameUtils;
+import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -15,8 +14,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import javax.swing.*;
 
 @Mixin(HeldItemRenderer.class)
 public abstract class HeldItemRendererMixin {

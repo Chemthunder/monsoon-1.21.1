@@ -3,9 +3,9 @@
   "package": "net.kindling.monsoon.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BackgroundRendererMixin",
     "HungerManagerMixin",
-    "PlayerEntityMixin",
-    "client.WorldRendererMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -14,7 +14,9 @@
     "requireAnnotations": true
   },
   "client": [
+    "client.DimensionEffectsMixin",
     "client.HeldItemRendererMixin",
-    "client.InGameHudMixin"
+    "client.InGameHudMixin",
+    "client.WorldRendererMixin"
   ]
 }

@@ -1,7 +1,7 @@
 package net.kindling.monsoon.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.kindling.monsoon.impl.util.GameUtils;
+import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

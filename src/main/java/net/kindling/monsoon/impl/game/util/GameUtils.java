@@ -1,4 +1,4 @@
-package net.kindling.monsoon.impl.util;
+package net.kindling.monsoon.impl.game.util;
 
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 public class GameUtils {
     public static RegistryKey<World> wastelandKey = RegistryKey.of(RegistryKeys.WORLD, Monsoon.id("wasteland"));
 
-
     public static boolean isAliveAndInSurvival(PlayerEntity player) {
         return player != null && !player.isInCreativeMode() && !PlayerGameComponent.KEY.get(player).isDead;
     }
@@ -28,12 +27,8 @@ public class GameUtils {
         if (player instanceof ServerPlayerEntity serverPlayer) serverPlayer.changeGameMode(GameMode.SPECTATOR);
     }
 
-    public static boolean isGameActive(World world) {
-        return world != null && WorldGameComponent.KEY.get(world).isActive;
-    }
-
     public static boolean isInWasteland(PlayerEntity player) {
-        return player.getWorld().getRegistryKey().equals(wastelandKey);
+        return player != null && player.getWorld().getRegistryKey().equals(wastelandKey);
     }
 
     public static void setHeldStack(PlayerEntity player, ItemStack givenStack) {
@@ -46,4 +41,6 @@ public class GameUtils {
     public static ItemStack getHeldStack(PlayerEntity player) {
         return PlayerGameComponent.KEY.get(player).heldStack;
     }
+
+    public int ticksToSeconds(int ticks) {return ticks / 20;}
 }
