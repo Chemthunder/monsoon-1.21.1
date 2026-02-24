@@ -6,6 +6,7 @@ import net.kindling.monsoon.impl.block.entity.SwitchBlockEntity;
 import net.kindling.monsoon.impl.client.block.animation.SwitchModelAnimations;
 import net.kindling.monsoon.impl.index.client.MonsoonModelLayers;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
@@ -20,6 +21,7 @@ public class SwitchBlockEntityRenderer extends AnimatableBlockEntityRenderer<Swi
     private final ModelPart part;
 
     public SwitchBlockEntityRenderer(Identifier texture, BlockEntityRendererFactory.@NotNull Context ctx) {
+        super(RenderLayer::getEntityCutout);
         this.texture = texture;
         this.part = ctx.getLayerModelPart(MonsoonModelLayers.SWITCH);
     }

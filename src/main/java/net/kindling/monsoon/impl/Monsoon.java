@@ -1,7 +1,9 @@
 package net.kindling.monsoon.impl;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
+import net.kindling.monsoon.compat.MonsoonConfig;
 import net.kindling.monsoon.impl.index.*;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ public class Monsoon implements ModInitializer {
     public void onInitialize() {
         // AcornLib
         ALib.registerModMenu(MOD_ID, 0x233e37);
+        MidnightConfig.init(MOD_ID, MonsoonConfig.class);
 
         // Initialization
         MonsoonBlockEntities.init();

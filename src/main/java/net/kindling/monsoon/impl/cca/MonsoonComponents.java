@@ -10,7 +10,6 @@ import org.ladysnake.cca.api.v3.world.WorldComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.world.WorldComponentInitializer;
 
 public class MonsoonComponents implements EntityComponentInitializer, WorldComponentInitializer {
-
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.beginRegistration(PlayerEntity.class, PlayerGameComponent.KEY).respawnStrategy(RespawnCopyStrategy.NEVER_COPY).end(PlayerGameComponent::new);
     }

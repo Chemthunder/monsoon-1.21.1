@@ -1,10 +1,13 @@
 package net.kindling.monsoon.impl.block.entity;
 
 import net.kindling.monsoon.impl.block.SwitchBlock;
+import net.kindling.monsoon.impl.game.Game;
+import net.kindling.monsoon.impl.game.GameClient;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -45,6 +48,20 @@ public class SwitchBlockEntity extends BlockEntity {
         this.flipped = !this.flipped;
         this.world.addSyncedBlockEvent(this.pos, this.getCachedState().getBlock(), Block.NOTIFY_NEIGHBORS, this.flipped ? 1 : 0);
         this.updateListeners();
+
+        if (this.world.isClient) {
+            if (this.flipped) {
+                GameClient.startGame((ClientWorld) this.world);
+            } else {
+                GameClient.endGame((ClientWorld) this.world);
+            }
+        }
+
+        if (this.flipped) {
+            Game.startGame(this.world);
+        } else {
+            Game.endGame(this.world);
+        }
     }
 
     public boolean isFlipped() {

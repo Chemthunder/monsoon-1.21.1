@@ -1,8 +1,8 @@
 package net.kindling.monsoon.impl.item;
 
+import net.kindling.monsoon.impl.game.Game;
 import net.kindling.monsoon.impl.game.GameClient;
 import net.kindling.monsoon.impl.index.MonsoonFog;
-import net.kindling.monsoon.impl.game.Game;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -26,17 +26,19 @@ public class TestItem extends Item {
 
             if (!Game.isActive(world)) {
                 if (world.isClient && world instanceof ClientWorld clientWorld) {
-                    GameClient.init(clientWorld);
+                    GameClient.startGame(clientWorld);
                 } else {
-                    Game.init(world);
+                    Game.startGame(world);
                 }
+
                 string = "started";
 
             } else {
                 if (world.isClient && world instanceof ClientWorld clientWorld) {
-                    GameClient.forceEndClient(clientWorld);
+                    GameClient.endGame(clientWorld);
                 }
-                Game.forceEndGame(world);
+
+                Game.endGame(world);
                 string = "stopped";
             }
 
@@ -51,6 +53,7 @@ public class TestItem extends Item {
                     .setChaos(0.1F)
                     .setFogColor(0F, 0F, 0F);
         }
+
         return super.use(world, user, hand);
     }
 }

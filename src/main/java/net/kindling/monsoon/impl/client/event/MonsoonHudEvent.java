@@ -1,6 +1,7 @@
 package net.kindling.monsoon.impl.client.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.kindling.monsoon.impl.MonsoonClient;
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.MinecraftClient;
@@ -10,8 +11,7 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
-public class MonsoonHud implements HudRenderCallback {
-
+public class MonsoonHudEvent implements HudRenderCallback {
     public void onHudRender(DrawContext drawContext, RenderTickCounter renderTickCounter) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
@@ -19,7 +19,7 @@ public class MonsoonHud implements HudRenderCallback {
         int centerX = drawContext.getScaledWindowWidth() / 2;
         int centerY = drawContext.getScaledWindowHeight() / 2;
 
-        if (GameUtils.isAliveAndInSurvival(player)) {
+        if (MonsoonClient.isAliveAndInSurvival()) {
             PlayerGameComponent playerGameComponent = PlayerGameComponent.KEY.get(player);
 
             int itemX = centerX - 110;
@@ -37,7 +37,7 @@ public class MonsoonHud implements HudRenderCallback {
 
                     drawContext.drawTextWithShadow(
                             textRenderer,
-                            Text.translatable("monsoon.misc.itemreadout.filled").append(Text.translatable(GameUtils.getHeldStack(player).getTranslationKey())),
+                            Text.translatable("monsoon.misc.itemReadout.filled", GameUtils.getHeldStack(player).getName()),
                             itemX + 30,
                             itemY + offset,
                             0xffffff

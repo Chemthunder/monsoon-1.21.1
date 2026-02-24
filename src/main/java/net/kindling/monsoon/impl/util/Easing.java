@@ -1,5 +1,7 @@
 package net.kindling.monsoon.impl.util;
+
 import java.util.function.Function;
+
 import static java.lang.Math.*;
 
 public enum Easing {

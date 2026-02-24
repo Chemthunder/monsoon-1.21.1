@@ -1,9 +1,6 @@
 package net.kindling.monsoon.impl.fog;
 
 import org.joml.Vector3f;
-import org.joml.Vector4f;
-
-import org.joml.Vector3f;
 
 public class FogSettings {
 

@@ -4,23 +4,23 @@ import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.client.render.post.PostPipeline;
 import foundry.veil.api.client.render.post.PostProcessingManager;
 import net.kindling.monsoon.impl.Monsoon;
-import net.kindling.monsoon.impl.cca.world.WorldGameComponent;
 import net.kindling.monsoon.impl.fog.FogRenderer;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.world.World;
+
+import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
 
 public class GameClient {
-    public static void init(ClientWorld world) {
-        Monsoon.LOGGER.info("Client-Side has been initialized");
-
+    public static void startGame(ClientWorld world) {
         enableFog();
+
+        ifDev(() -> Monsoon.LOGGER.info("Game has been initialized [CLIENT]"));
     }
 
-    public static void forceEndClient(ClientWorld world) {
+    public static void endGame(ClientWorld world) {
         disableFog();
         FogRenderer.resetFog();
 
-        Monsoon.LOGGER.info("game ended successfully");
+        ifDev(() -> Monsoon.LOGGER.info("Game ended successfully [CLIENT]"));
     }
 
     public static void enableFog() {

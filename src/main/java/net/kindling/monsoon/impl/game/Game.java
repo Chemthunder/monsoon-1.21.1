@@ -1,29 +1,33 @@
 package net.kindling.monsoon.impl.game;
 
-import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.VeilRenderer;
+import net.kindling.monsoon.api.event.EndGameEvent;
+import net.kindling.monsoon.api.event.StartGameEvent;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.cca.world.WorldGameComponent;
 import net.minecraft.world.World;
 
-public class Game {
-    public static void init(World world) {
-        WorldGameComponent.KEY.get(world).isActive = true;
-        WorldGameComponent.KEY.get(world).sync();
+import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
 
-        Monsoon.LOGGER.info("Game has been initialized");
+public class Game {
+    public static void startGame(World world) {
+        WorldGameComponent component = WorldGameComponent.KEY.get(world);
+        component.setActive(true);
+
+        world.getPlayers().forEach(player -> StartGameEvent.EVENT.invoker().startGame(player, world, component));
+
+        ifDev(() -> Monsoon.LOGGER.info("Game has been initialized"));
     }
 
-    public static void forceEndGame(World world) {
-        WorldGameComponent worldGameComponent = WorldGameComponent.KEY.get(world);
+    public static void endGame(World world) {
+        WorldGameComponent component = WorldGameComponent.KEY.get(world);
+        component.setActive(false);
 
-        worldGameComponent.isActive = false;
-        worldGameComponent.sync();
+        world.getPlayers().forEach(player -> EndGameEvent.EVENT.invoker().startGame(player, world, component));
 
-        Monsoon.LOGGER.info("game ended successfully");
+        ifDev(() -> Monsoon.LOGGER.info("Game ended successfully"));
     }
 
     public static boolean isActive(World world) {
-        return world != null && WorldGameComponent.KEY.get(world).isActive;
+        return world != null && WorldGameComponent.KEY.get(world).isActive();
     }
 }
