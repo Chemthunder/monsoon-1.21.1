@@ -3,6 +3,7 @@ package net.kindling.monsoon.datagen.resources;
 import net.acoyt.acornlib.impl.AcornLib;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.kindling.monsoon.impl.event.KeyInputHandler;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
 import net.kindling.monsoon.impl.index.MonsoonItems;
 import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
@@ -24,6 +25,9 @@ public class MonsoonLangGen extends FabricLanguageProvider {
         // Misc
         translationBuilder.add("itemGroup.monsoon", "Monsoon");
         translationBuilder.add("monsoon.misc.itemReadout", "Holding: %s");
+
+        translationBuilder.add(KeyInputHandler.KEY_CATEGORY_MONSOON, "Monsoon");
+        translationBuilder.add(KeyInputHandler.KEY_FLASHLIGHT_TOGGLE, "Toggle Flashlight");
     }
 
     // MidnightConfig

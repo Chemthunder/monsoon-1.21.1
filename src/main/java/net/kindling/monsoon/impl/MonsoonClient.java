@@ -3,6 +3,7 @@ package net.kindling.monsoon.impl;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.kindling.monsoon.impl.client.event.MonsoonHudEvent;
+import net.kindling.monsoon.impl.event.KeyInputHandler;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
@@ -23,6 +24,7 @@ public class MonsoonClient implements ClientModInitializer {
 
         /* Events */
         HudRenderCallback.EVENT.register(new MonsoonHudEvent());
+        KeyInputHandler.register();
     }
 
     public static boolean isAliveAndInSurvival() {
