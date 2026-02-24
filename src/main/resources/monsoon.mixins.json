@@ -1,17 +1,22 @@
 {
-    "required": true,
-    "package": "net.kindling.monsoon.mixin",
-    "compatibilityLevel": "JAVA_21",
-    "mixins": [
-        "HungerManagerMixin",
-        "PlayerEntityMixin",
-        "access.VoxelShapeAccessor"
-    ],
-    "client": [
-        "client.BackgroundRendererMixin",
-        "client.InGameHudMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
-    }
+  "required": true,
+  "package": "net.kindling.monsoon.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BackgroundRendererMixin",
+    "HungerManagerMixin",
+    "PlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "client.DimensionEffectsMixin",
+    "client.HeldItemRendererMixin",
+    "client.InGameHudMixin",
+    "client.WorldRendererMixin"
+  ]
 }

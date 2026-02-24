@@ -1,7 +1,8 @@
 package net.kindling.monsoon.impl.client.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.kindling.monsoon.impl.util.GameUtils;
+import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
+import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -15,14 +16,34 @@ public class MonsoonHud implements HudRenderCallback {
         PlayerEntity player = MinecraftClient.getInstance().player;
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 
+        int centerX = drawContext.getScaledWindowWidth() / 2;
+        int centerY = drawContext.getScaledWindowHeight() / 2;
+
         if (GameUtils.isAliveAndInSurvival(player)) {
-            drawContext.drawTextWithShadow(
-                    textRenderer,
-                    Text.literal("test"),
-                    drawContext.getScaledWindowWidth() / 2 - 10,
-                    drawContext.getScaledWindowHeight() / 2 - 15,
-                    0xffffff
-            );
+            PlayerGameComponent playerGameComponent = PlayerGameComponent.KEY.get(player);
+
+            int itemX = centerX - 110;
+            int itemY = centerY + 70;
+            int offset = 5;
+
+            boolean shouldRender = true;
+
+            if (!GameUtils.getHeldStack(player).isEmpty()) {
+                if (shouldRender) {
+                    drawContext.drawItem(GameUtils.getHeldStack(player),
+                            itemX,
+                            itemY
+                    );
+
+                    drawContext.drawTextWithShadow(
+                            textRenderer,
+                            Text.translatable("monsoon.misc.itemreadout.filled").append(Text.translatable(GameUtils.getHeldStack(player).getTranslationKey())),
+                            itemX + 30,
+                            itemY + offset,
+                            0xffffff
+                    );
+                }
+            }
         }
     }
 }

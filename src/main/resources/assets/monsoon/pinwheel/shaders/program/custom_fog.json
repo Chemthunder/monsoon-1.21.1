@@ -1,0 +1,15 @@
+{
+  "vertex": "veil:blit_screen",
+  "fragment": "monsoon:custom_fog",
+  "textures": {
+    "NoiseSampler": {
+      "type": "location",
+      "location": "monsoon:textures/effect/fog_noise.png",
+      "filter": {
+        "blur": true,
+        "wrapX": "repeat",
+        "wrapY": "repeat"
+      }
+    }
+  }
+}

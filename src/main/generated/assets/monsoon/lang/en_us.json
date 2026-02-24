@@ -1,4 +1,8 @@
 {
   "block.monsoon.test_block": "Test Block",
-  "item.monsoon.test_item": "Test Item"
+  "item.monsoon.flashlight": "Flashlight",
+  "item.monsoon.test_item": "Test Item",
+  "itemGroup.monsoon": "Monsoon",
+  "monsoon.misc.itemreadout.empty": "Empty",
+  "monsoon.misc.itemreadout.filled": "Holding: "
 }
