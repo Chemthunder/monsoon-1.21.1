@@ -27,7 +27,7 @@ public class KeyInputHandler {
         flashlightKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_FLASHLIGHT_TOGGLE,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_C,
+                GLFW.GLFW_KEY_R,
                 KEY_CATEGORY_MONSOON
         ));
 

@@ -46,6 +46,9 @@
             "monsoon:game",
             "monsoon:player",
             "monsoon:currency"
-        ]
+        ],
+        "fabwork": {
+            "requiredOn": "*"
+        }
     }
 }

@@ -3,6 +3,7 @@ package net.kindling.monsoon.impl.item;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import net.kindling.monsoon.api.item.SpecialItem;
 import net.kindling.monsoon.impl.cca.entity.CurrencyGameComponent;
+import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -31,6 +32,9 @@ public class CrispItem extends SpecialItem implements ColorableItem {
         ItemStack stack = user.getStackInHand(hand);
 
         if (user.isSneaking()) {
+            if (world.isClient()) {
+                CurrencyReadoutEvent.setUseTime(200);
+            }
             currencyGameComponent.currency ++;
             currencyGameComponent.sync();
 

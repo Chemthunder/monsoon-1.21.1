@@ -28,10 +28,11 @@ public class Monsoon implements ModInitializer {
         MonsoonItems.init();
         MonsoonSoundEvents.init();
 
+        /* Networking */
+        MonsoonNetworking.registerC2SPackets();
+
         /* Events */
         StartGameEvent.EVENT.register(new GameBeginEvent());
-
-        /* Networking */
 
         LOGGER.info("Monsoons are brewing...");
     }
