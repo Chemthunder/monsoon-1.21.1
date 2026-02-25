@@ -2,6 +2,7 @@ package net.kindling.monsoon.mixin.client;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.MinecraftClient;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
 public abstract class WorldRendererMixin {
-    @Unique private static final Identifier MONSOON_SUN = Monsoon.id("textures/environment/test_sun.png");
+    @Unique private static final Identifier MONSOON_SUN = Monsoon.id("textures/environment/monsoon_sun.png");
 
     @Inject(method = "renderClouds", at = @At("HEAD"), cancellable = true)
     private void monsoon$clouds(MatrixStack matrices, Matrix4f matrix4f, Matrix4f matrix4f2, float tickDelta, double cameraX, double cameraY, double cameraZ, CallbackInfo ci) {

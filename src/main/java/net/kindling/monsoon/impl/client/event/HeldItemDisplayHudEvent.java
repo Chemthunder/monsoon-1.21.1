@@ -11,7 +11,7 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
-public class MonsoonHudEvent implements HudRenderCallback {
+public class HeldItemDisplayHudEvent implements HudRenderCallback {
     public void onHudRender(DrawContext drawContext, RenderTickCounter renderTickCounter) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
@@ -20,8 +20,6 @@ public class MonsoonHudEvent implements HudRenderCallback {
         int centerY = drawContext.getScaledWindowHeight() / 2;
 
         if (MonsoonClient.isAliveAndInSurvival()) {
-            PlayerGameComponent playerGameComponent = PlayerGameComponent.KEY.get(player);
-
             int itemX = centerX - 110;
             int itemY = centerY + 70;
             int offset = 5;

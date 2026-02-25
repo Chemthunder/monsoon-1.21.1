@@ -2,7 +2,9 @@ package net.kindling.monsoon.impl;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.kindling.monsoon.impl.client.event.MonsoonHudEvent;
+import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
+import net.kindling.monsoon.impl.client.event.HeldItemDisplayHudEvent;
+import net.kindling.monsoon.impl.event.GameBeginEvent;
 import net.kindling.monsoon.impl.event.KeyInputHandler;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
@@ -23,7 +25,9 @@ public class MonsoonClient implements ClientModInitializer {
         MonsoonModelLayers.init();
 
         /* Events */
-        HudRenderCallback.EVENT.register(new MonsoonHudEvent());
+        HudRenderCallback.EVENT.register(new HeldItemDisplayHudEvent());
+        HudRenderCallback.EVENT.register(new CurrencyReadoutEvent());
+
         KeyInputHandler.register();
     }
 

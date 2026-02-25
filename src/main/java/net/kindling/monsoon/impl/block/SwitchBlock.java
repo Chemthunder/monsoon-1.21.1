@@ -5,12 +5,14 @@ import net.kindling.monsoon.impl.block.entity.SwitchBlockEntity;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.kindling.monsoon.impl.util.ModUtils;
+import net.kindling.monsoon.impl.util.WorldBroadcastManager;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -58,7 +60,10 @@ public class SwitchBlock extends BlockWithEntity implements Waterloggable {
             switchBlock.flip();
 
             if (switchBlock.isFlipped()) {
-                world.playSound(null, pos, MonsoonSoundEvents.SWITCH_2, SoundCategory.BLOCKS, 1, 1);
+                if (world instanceof ServerWorld serverWorld) {
+                    world.playSound(null, pos, MonsoonSoundEvents.SWITCH_2, SoundCategory.BLOCKS, 1, 1);
+                    WorldBroadcastManager.playScreenshakeGlobally(serverWorld, 0.5f, 10);
+                }
             }
             return ActionResult.success(world.isClient);
         }

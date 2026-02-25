@@ -6,7 +6,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 
-import static net.kindling.monsoon.impl.index.MonsoonItems.TEST_ITEM;
+import static net.kindling.monsoon.impl.index.MonsoonItems.*;
 
 public class MonsoonModelGen extends FabricModelProvider {
     public MonsoonModelGen(FabricDataOutput output) {
@@ -19,5 +19,10 @@ public class MonsoonModelGen extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator generator) {
         generator.register(TEST_ITEM, Models.GENERATED);
+        generator.register(CRISP, Models.GENERATED);
+
+        generator.register(PICKAXE, Models.GENERATED);
+        generator.register(AXE, Models.GENERATED);
+        generator.register(SHOVEL, Models.GENERATED);
     }
 }
