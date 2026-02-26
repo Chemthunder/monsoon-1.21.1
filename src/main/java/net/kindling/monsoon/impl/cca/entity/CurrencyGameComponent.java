@@ -32,7 +32,7 @@ public class CurrencyGameComponent implements AutoSyncedComponent {
     }
 
     public int getCurrency() {
-        return currency;
+        return this.currency;
     }
 
     public void setCurrency(int currency) {
