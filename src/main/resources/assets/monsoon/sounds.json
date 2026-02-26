@@ -1,15 +1,22 @@
 {
-    "block.switch_1": {
+    "block.switch": {
         "sounds": [
-            "monsoon:block/switch_1"
+            "monsoon:block/switch"
         ],
-        "subtitle": "subtitles.monsoon.block.switch_1"
+        "subtitle": "subtitles.monsoon.block.switch"
     },
 
-    "block.switch_2": {
+    "item.crisp_use": {
         "sounds": [
-            "monsoon:block/switch_2"
+            "monsoon:item/crisp_use"
         ],
-        "subtitle": "subtitles.monsoon.block.switch_2"
+        "subtitle": "subtitles.monsoon.item.crisp_use"
+    },
+
+    "gui.whattheactualfuckisthis": {
+        "sounds": [
+            "monsoon:gui/whattheactualfuckisthis"
+        ],
+        "subtitle": "subtitles.monsoon.gui.whattheactualfuckisthis"
     }
 }

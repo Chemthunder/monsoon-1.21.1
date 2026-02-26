@@ -50,8 +50,13 @@ public class MonsoonLangGen extends FabricLanguageProvider {
         translationBuilder.add(KeyInputHandler.KEY_CATEGORY_MONSOON, "Monsoon");
         translationBuilder.add(KeyInputHandler.KEY_FLASHLIGHT_TOGGLE, "Toggle Flashlight");
 
-        // game
+        // Game
         translationBuilder.add("monsoon.game.begin", "The game is starting!");
+
+        // Sounds
+        translationBuilder.add("subtitles.monsoon.item.crisp_use", "Crisp is added to balance");
+
+        translationBuilder.add("subtitles.monsoon.block.switch", "Switch is flipped");
     }
 
     // MidnightConfig

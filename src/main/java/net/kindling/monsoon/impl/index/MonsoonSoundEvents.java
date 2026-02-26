@@ -7,8 +7,9 @@ import net.minecraft.sound.SoundEvent;
 public interface MonsoonSoundEvents {
     SoundEventRegistrant SOUND_EVENTS = new SoundEventRegistrant(Monsoon.MOD_ID);
 
-    SoundEvent SWITCH_1 = SOUND_EVENTS.register("block.switch_1");
-    SoundEvent SWITCH_2 = SOUND_EVENTS.register("block.switch_2");
+    SoundEvent SWITCH = SOUND_EVENTS.register("block.switch");
+    SoundEvent CRISP_USE = SOUND_EVENTS.register("item.crisp_use");
+    SoundEvent WHATTHEACTUALFUCKISTHIS = SOUND_EVENTS.register("gui.whattheactualfuckisthis");
 
     static void init() {
         //

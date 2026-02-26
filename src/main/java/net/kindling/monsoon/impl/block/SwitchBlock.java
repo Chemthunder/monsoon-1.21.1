@@ -61,7 +61,7 @@ public class SwitchBlock extends BlockWithEntity implements Waterloggable {
 
             if (switchBlock.isFlipped()) {
                 if (world instanceof ServerWorld serverWorld) {
-                    world.playSound(null, pos, MonsoonSoundEvents.SWITCH_2, SoundCategory.BLOCKS, 1, 1);
+                    world.playSound(null, pos, MonsoonSoundEvents.SWITCH, SoundCategory.BLOCKS, 1, 1);
                     WorldBroadcastManager.playScreenshakeGlobally(serverWorld, 0.5f, 10);
                 }
             }

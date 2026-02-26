@@ -4,9 +4,11 @@ import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import net.kindling.monsoon.api.item.SpecialItem;
 import net.kindling.monsoon.impl.cca.entity.CurrencyGameComponent;
 import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
+import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -31,17 +33,16 @@ public class CrispItem extends SpecialItem implements ColorableItem {
         CurrencyGameComponent currencyGameComponent = CurrencyGameComponent.KEY.get(user);
         ItemStack stack = user.getStackInHand(hand);
 
-        if (user.isSneaking()) {
-            if (world.isClient()) {
-                CurrencyReadoutEvent.setUseTime(200);
-            }
-            currencyGameComponent.currency ++;
-            currencyGameComponent.sync();
-
-            stack.split(1);
-
-            user.swingHand(hand);
+        if (world.isClient()) {
+            CurrencyReadoutEvent.setUseTime(200);
         }
+        currencyGameComponent.currency ++;
+        currencyGameComponent.sync();
+
+        stack.split(1);
+
+        user.swingHand(hand);
+        user.playSoundToPlayer(MonsoonSoundEvents.CRISP_USE, SoundCategory.PLAYERS, 1.0F, (float) (1.0F + user.getRandom().nextGaussian() / 10.0F));
 
         return super.use(world, user, hand);
     }

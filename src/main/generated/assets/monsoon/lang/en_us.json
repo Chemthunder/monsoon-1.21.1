@@ -13,6 +13,8 @@
   "key.monsoon.flashlight": "Toggle Flashlight",
   "monsoon.game.begin": "The game is starting!",
   "monsoon.misc.itemReadout": "Holding: %s",
+  "subtitles.monsoon.block.switch": "Switch is flipped",
+  "subtitles.monsoon.item.crisp_use": "Crisp is added to balance",
   "tooltip.monsoon.axe.broken.1": "A... broken tool that could have been used for resolving conflict bitterly or gather wood,",
   "tooltip.monsoon.axe.broken.2": "now all it can do is waste space...",
   "tooltip.monsoon.axe.fixed.1": "A great tool to gather wood and heads-",
