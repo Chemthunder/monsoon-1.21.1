@@ -1,5 +1,6 @@
 package net.kindling.monsoon.impl.block.entity;
 
+import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.minecraft.block.Block;
@@ -7,14 +8,19 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
+
 public class CreditsBlockEntity extends BlockEntity {
     @Nullable private Author author = Author.KINDLING;
     public int age = 0;
+    public boolean shouldNotTick = false;
 
     public CreditsBlockEntity(BlockPos pos, BlockState state) {
         super(MonsoonBlockEntities.CREDITS, pos, state);
@@ -28,11 +34,16 @@ public class CreditsBlockEntity extends BlockEntity {
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        this.age++;
-        if (this.age % 40 == 0) this.updateListeners();
+        if (this.getWorld() != null) {
+            this.age++;
+            if (this.age % 40 == 0) this.updateListeners();
 
-        if (this.age > 0 && this.age % GameUtils.getInTicks(5, 0) == 0 && this.author != null) {
-            this.setAuthor(Author.getNext(this.author));
+            if (this.age > 0 && this.age % GameUtils.getInTicks(5, 0) == 0 && this.author != null) {
+                if (!this.shouldNotTick) {
+                    this.setAuthor(Author.getNext(this.author));
+//                    ifDev(() -> Monsoon.LOGGER.info("Tick passed successfully"));
+                }
+            }
         }
     }
 
@@ -41,6 +52,7 @@ public class CreditsBlockEntity extends BlockEntity {
 
         nbt.putString("Author", this.getAuthor().asString());
         nbt.putInt("Age", this.age);
+        nbt.putBoolean("ShouldNotTick", shouldNotTick);
     }
 
     public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
@@ -51,6 +63,7 @@ public class CreditsBlockEntity extends BlockEntity {
         }
 
         this.age = nbt.getInt("Age");
+        this.shouldNotTick = nbt.getBoolean("ShouldNotTick");
     }
 
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
@@ -63,6 +76,15 @@ public class CreditsBlockEntity extends BlockEntity {
 
     public void setAuthor(@Nullable Author author) {
         this.author = author != null ? author : Author.KINDLING;
+        this.updateListeners();
+    }
+
+    public boolean getShouldNotTick() {
+        return this.shouldNotTick;
+    }
+
+    public void setShouldNotTick(boolean status) {
+        this.shouldNotTick = status;
         this.updateListeners();
     }
 

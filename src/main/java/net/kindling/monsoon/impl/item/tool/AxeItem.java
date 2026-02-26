@@ -17,8 +17,8 @@ import java.util.List;
 public class AxeItem extends MonsoonToolItem implements ModelVaryingItem {
     public AxeItem(Settings settings) {
         super(settings,
-                "tooltip.monsoon.axe.fixed.",
-                "tooltip.monsoon.axe.broken."
+                "tooltip.monsoon.axe.fixed",
+                "tooltip.monsoon.axe.broken"
         );
     }
 

@@ -68,7 +68,6 @@ public class SwitchBlockEntity extends BlockEntity {
         return this.flipped;
     }
 
-    @Override
     public boolean onSyncedBlockEvent(int type, int data) {
         if (this.world != null && type == 1) {
             this.state.start(this.age);

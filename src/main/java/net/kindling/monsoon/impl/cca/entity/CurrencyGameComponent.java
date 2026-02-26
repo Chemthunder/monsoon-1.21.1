@@ -8,8 +8,6 @@ import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
-import javax.swing.*;
-
 public class CurrencyGameComponent implements AutoSyncedComponent {
     public static final ComponentKey<CurrencyGameComponent> KEY = MiscUtils.getOrCreateKey(Monsoon.id("currency"), CurrencyGameComponent.class);
     private final PlayerEntity player;

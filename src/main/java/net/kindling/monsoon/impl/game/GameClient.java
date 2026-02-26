@@ -4,7 +4,6 @@ import foundry.veil.api.client.render.VeilRenderSystem;
 import foundry.veil.api.client.render.post.PostPipeline;
 import foundry.veil.api.client.render.post.PostProcessingManager;
 import net.kindling.monsoon.impl.Monsoon;
-import net.kindling.monsoon.impl.fog.FogRenderer;
 import net.kindling.monsoon.impl.index.MonsoonFog;
 import net.minecraft.client.world.ClientWorld;
 

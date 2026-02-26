@@ -2,7 +2,6 @@ package net.kindling.monsoon.impl.client.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.kindling.monsoon.impl.MonsoonClient;
-import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

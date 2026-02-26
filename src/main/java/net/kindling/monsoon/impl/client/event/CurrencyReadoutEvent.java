@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.kindling.monsoon.impl.MonsoonClient;
 import net.kindling.monsoon.impl.cca.entity.CurrencyGameComponent;
 import net.kindling.monsoon.impl.index.MonsoonItems;
-import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.kindling.monsoon.impl.util.Easing;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -12,7 +11,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 
 public class CurrencyReadoutEvent implements HudRenderCallback {
