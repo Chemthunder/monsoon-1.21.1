@@ -9,41 +9,45 @@ import net.kindling.monsoon.impl.index.MonsoonFog;
 import net.minecraft.client.world.ClientWorld;
 
 import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
+import static net.kindling.monsoon.impl.Monsoon.id;
 
 public class GameClient {
     public static void startGame(ClientWorld world) {
-        enableFog();
+        enableShader("custom_fog");
+        enableShader("curvature");
 
         ifDev(() -> Monsoon.LOGGER.info("Game has been initialized [CLIENT]"));
     }
 
     public static void endGame(ClientWorld world) {
-        disableFog();
+        disableShader("custom_fog");
+        disableShader("curvature");
+
         MonsoonFog.renderer.resetFog();
 
         ifDev(() -> Monsoon.LOGGER.info("Game ended successfully [CLIENT]"));
     }
 
-    public static void enableFog() {
+    public static void enableShader(String shader) {
         try {
             PostProcessingManager postProcessingManager = VeilRenderSystem.renderer().getPostProcessingManager();
-            PostPipeline postPipeline = postProcessingManager.getPipeline(Monsoon.id("custom_fog"));
+            PostPipeline postPipeline = postProcessingManager.getPipeline(id(shader));
 
             assert postPipeline != null;
-            postProcessingManager.add(Monsoon.id("custom_fog"));
+            postProcessingManager.add(id(shader));
             postProcessingManager.runPipeline(postPipeline);
 
 
         } catch (Exception ignored) {}
     }
 
-    public static void disableFog() {
+    public static void disableShader(String shader) {
         try {
             PostProcessingManager postProcessingManager = VeilRenderSystem.renderer().getPostProcessingManager();
-            PostPipeline postPipeline = postProcessingManager.getPipeline(Monsoon.id("custom_fog"));
+            PostPipeline postPipeline = postProcessingManager.getPipeline(id(shader));
 
             assert postPipeline != null;
-            postProcessingManager.remove(Monsoon.id("custom_fog"));
+            postProcessingManager.remove(id(shader));
         } catch (Exception ignored) {}
     }
 }
