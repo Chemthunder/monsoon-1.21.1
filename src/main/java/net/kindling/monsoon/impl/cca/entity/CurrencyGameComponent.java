@@ -12,20 +12,19 @@ import javax.swing.*;
 
 public class CurrencyGameComponent implements AutoSyncedComponent {
     public static final ComponentKey<CurrencyGameComponent> KEY = MiscUtils.getOrCreateKey(Monsoon.id("currency"), CurrencyGameComponent.class);
-
-    public int currency;
     private final PlayerEntity player;
+    private int currency;
 
     public CurrencyGameComponent(PlayerEntity player) {
         this.player = player;
     }
 
-    public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.currency = nbtCompound.getInt("currency");
+    public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+        this.currency = nbt.getInt("Currency");
     }
 
-    public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putInt("currency", currency);
+    public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+        nbt.putInt("Currency", currency);
     }
 
     public void sync() {
@@ -34,5 +33,10 @@ public class CurrencyGameComponent implements AutoSyncedComponent {
 
     public int getCurrency() {
         return currency;
+    }
+
+    public void setCurrency(int currency) {
+        this.currency = currency;
+        this.sync();
     }
 }

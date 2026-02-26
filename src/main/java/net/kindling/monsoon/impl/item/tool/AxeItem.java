@@ -17,28 +17,25 @@ import java.util.List;
 public class AxeItem extends MonsoonToolItem implements ModelVaryingItem {
     public AxeItem(Settings settings) {
         super(settings,
-                "tooltip.monsoon.axe.fixed.1",
-                "tooltip.monsoon.axe.broken.1",
-                "tooltip.monsoon.axe.fixed.2",
-                "tooltip.monsoon.axe.broken.2");
+                "tooltip.monsoon.axe.fixed.",
+                "tooltip.monsoon.axe.broken."
+        );
     }
 
     public Identifier getModel(ModelTransformationMode renderMode, ItemStack stack, @Nullable LivingEntity entity) {
-        var fixed = stack.getOrDefault(MonsoonDataComponents.FIXED, false);
-
-        if (fixed == true) {
-            return MiscUtils.isGui(renderMode) ? Monsoon.id("axe") : Monsoon.id("axe_handheld");
+        if (stack.getOrDefault(MonsoonDataComponents.REPAIRED, false)) {
+            return MiscUtils.isGui(renderMode) ? Monsoon.id("axe") : Monsoon.id("axe_in_hand");
         } else {
-            return MiscUtils.isGui(renderMode) ? Monsoon.id("axe_broken") : Monsoon.id("axe_handheld_broken");
+            return MiscUtils.isGui(renderMode) ? Monsoon.id("axe_broken") : Monsoon.id("axe_broken_in_hand");
         }
     }
 
     public List<Identifier> getModelsToLoad() {
         return Arrays.asList(
                 Monsoon.id("axe"),
-                Monsoon.id("axe_handheld"),
+                Monsoon.id("axe_in_hand"),
                 Monsoon.id("axe_broken"),
-                Monsoon.id("axe_handheld_broken")
+                Monsoon.id("axe_broken_in_hand")
         );
     }
 }

@@ -16,7 +16,7 @@ public interface EndGameEvent {
         List<EndGameEvent> sortedEvents = new ArrayList<>(Arrays.asList(events));
         sortedEvents.sort(Comparator.comparingInt(EndGameEvent::getPriority));
         for (EndGameEvent event : sortedEvents) {
-            event.startGame(player, world, component);
+            event.endGame(player, world, component);
         }
     });
 
@@ -24,5 +24,5 @@ public interface EndGameEvent {
         return 1000;
     }
 
-    void startGame(PlayerEntity player, World world, WorldGameComponent component);
+    void endGame(PlayerEntity player, World world, WorldGameComponent component);
 }

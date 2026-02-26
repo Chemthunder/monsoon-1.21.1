@@ -17,10 +17,6 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class CrispItem extends SpecialItem implements ColorableItem {
-    public int startColor(ItemStack itemStack) {return 0xFFae6144;}
-    public int endColor(ItemStack itemStack) {return 0xFFf4b04f;}
-    public int backgroundColor(ItemStack itemStack) {return 0xF022130f;}
-
     public CrispItem(Settings settings) {
         super(settings);
     }
@@ -30,14 +26,15 @@ public class CrispItem extends SpecialItem implements ColorableItem {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        CurrencyGameComponent currencyGameComponent = CurrencyGameComponent.KEY.get(user);
+        CurrencyGameComponent component = CurrencyGameComponent.KEY.get(user);
         ItemStack stack = user.getStackInHand(hand);
 
         if (world.isClient()) {
             CurrencyReadoutEvent.setUseTime(200);
         }
-        currencyGameComponent.currency ++;
-        currencyGameComponent.sync();
+
+        component.setCurrency(component.getCurrency() + 1);
+        component.sync();
 
         stack.split(1);
 
@@ -50,5 +47,17 @@ public class CrispItem extends SpecialItem implements ColorableItem {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.translatable("tooltip.monsoon.crisp").withColor(startColor(stack)));
         super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    public int startColor(ItemStack itemStack) {
+        return 0xFFae6144;
+    }
+
+    public int endColor(ItemStack itemStack) {
+        return 0xFFf4b04f;
+    }
+
+    public int backgroundColor(ItemStack itemStack) {
+        return 0xF022130f;
     }
 }

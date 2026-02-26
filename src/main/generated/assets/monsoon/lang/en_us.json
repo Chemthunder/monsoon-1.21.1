@@ -15,17 +15,11 @@
   "monsoon.misc.itemReadout": "Holding: %s",
   "subtitles.monsoon.block.switch": "Switch is flipped",
   "subtitles.monsoon.item.crisp_use": "Crisp is added to balance",
-  "tooltip.monsoon.axe.broken.1": "A... broken tool that could have been used for resolving conflict bitterly or gather wood,",
-  "tooltip.monsoon.axe.broken.2": "now all it can do is waste space...",
-  "tooltip.monsoon.axe.fixed.1": "A great tool to gather wood and heads-",
-  "tooltip.monsoon.axe.fixed.2": "I MEAN peacefully resolve conflict!",
+  "tooltip.monsoon.axe.broken": "A... broken tool that could have been used for resolving conflict bitterly or gather wood, \n now all it can do is waste space...",
+  "tooltip.monsoon.axe.fixed": "A great tool to gather wood and heads- \n I MEAN peacefully resolve conflict!",
   "tooltip.monsoon.crisp": "An odd metal that's kind of like gold, a great currency!",
-  "tooltip.monsoon.pickaxe.broken.1": "A... broken tool that used to be great for gathering rocks and minerals,",
-  "tooltip.monsoon.pickaxe.broken.2": "it can no longer do so...",
-  "tooltip.monsoon.pickaxe.fixed.1": "An old yet trusty tool gathering rocks and minerals.",
-  "tooltip.monsoon.pickaxe.fixed.2": " It's age is apparent.",
-  "tooltip.monsoon.shovel.broken.1": "A... broken tool that could have been used for excavating.",
-  "tooltip.monsoon.shovel.broken.2": "It can't even be used for nefarious uses at this state.",
-  "tooltip.monsoon.shovel.fixed.1": "An tool used primarily for excavating dirt!",
-  "tooltip.monsoon.shovel.fixed.2": "That doesn't mean it can't be used for more... nefarious things."
+  "tooltip.monsoon.pickaxe.broken": "A... broken tool that used to be great for gathering rocks and minerals, \n it can no longer do so...",
+  "tooltip.monsoon.pickaxe.fixed": "An old yet trusty tool gathering rocks and minerals. \n It's age is apparent.",
+  "tooltip.monsoon.shovel.broken": "A... broken tool that could have been used for excavating. \n It can't even be used for nefarious uses at this state.",
+  "tooltip.monsoon.shovel.fixed": "An tool used primarily for excavating dirt! \n That doesn't mean it can't be used for more... nefarious things."
 }

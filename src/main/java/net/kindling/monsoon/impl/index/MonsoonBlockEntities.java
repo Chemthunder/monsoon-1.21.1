@@ -30,6 +30,6 @@ public interface MonsoonBlockEntities {
 
     static void clientInit() {
         BlockEntityRendererFactories.register(SWITCH, ctx -> new SwitchBlockEntityRenderer(Monsoon.id("textures/entity/switch.png"), ctx));
-        BlockEntityRendererFactories.register(CREDITS, ctx -> new CreditsBlockEntityRenderer());
+        BlockEntityRendererFactories.register(CREDITS, CreditsBlockEntityRenderer::new);
     }
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "monsoon:item/template/tool",
+    "textures": {
+        "layer0": "monsoon:item/axe_in_hand"
+    }
+}

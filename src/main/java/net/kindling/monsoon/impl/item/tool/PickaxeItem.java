@@ -8,8 +8,6 @@ import net.kindling.monsoon.impl.item.MonsoonToolItem;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,28 +17,27 @@ import java.util.List;
 public class PickaxeItem extends MonsoonToolItem implements ModelVaryingItem {
     public PickaxeItem(Settings settings) {
         super(settings,
-                "tooltip.monsoon.pickaxe.fixed.1",
-                "tooltip.monsoon.pickaxe.broken.1",
-                "tooltip.monsoon.pickaxe.fixed.2",
-                "tooltip.monsoon.pickaxe.broken.2");
+                "tooltip.monsoon.pickaxe.fixed",
+                "tooltip.monsoon.pickaxe.broken"
+        );
     }
 
     public Identifier getModel(ModelTransformationMode renderMode, ItemStack stack, @Nullable LivingEntity entity) {
-        var fixed = stack.getOrDefault(MonsoonDataComponents.FIXED, false);
+        var fixed = stack.getOrDefault(MonsoonDataComponents.REPAIRED, false);
 
         if (fixed == true) {
-            return MiscUtils.isGui(renderMode) ? Monsoon.id("pickaxe") : Monsoon.id("pickaxe_handheld");
+            return MiscUtils.isGui(renderMode) ? Monsoon.id("pickaxe") : Monsoon.id("pickaxe_in_hand");
         } else {
-            return MiscUtils.isGui(renderMode) ? Monsoon.id("pickaxe_broken") : Monsoon.id("pickaxe_handheld_broken");
+            return MiscUtils.isGui(renderMode) ? Monsoon.id("pickaxe_broken") : Monsoon.id("pickaxe_broken_in_hand");
         }
     }
 
     public List<Identifier> getModelsToLoad() {
         return Arrays.asList(
                 Monsoon.id("pickaxe"),
-                Monsoon.id("pickaxe_handheld"),
+                Monsoon.id("pickaxe_in_hand"),
                 Monsoon.id("pickaxe_broken"),
-                Monsoon.id("pickaxe_handheld_broken")
+                Monsoon.id("pickaxe_broken_in_hand")
         );
     }
 }

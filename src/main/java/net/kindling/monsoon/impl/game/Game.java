@@ -22,7 +22,7 @@ public class Game {
         WorldGameComponent component = WorldGameComponent.KEY.get(world);
         component.setActive(false);
 
-        world.getPlayers().forEach(player -> EndGameEvent.EVENT.invoker().startGame(player, world, component));
+        world.getPlayers().forEach(player -> EndGameEvent.EVENT.invoker().endGame(player, world, component));
 
         ifDev(() -> Monsoon.LOGGER.info("Game ended successfully"));
     }

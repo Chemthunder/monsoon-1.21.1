@@ -3,9 +3,7 @@ package net.kindling.monsoon.impl;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
-import net.kindling.monsoon.api.event.StartGameEvent;
 import net.kindling.monsoon.compat.MonsoonConfig;
-import net.kindling.monsoon.impl.event.GameBeginEvent;
 import net.kindling.monsoon.impl.index.*;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -29,10 +27,10 @@ public class Monsoon implements ModInitializer {
         MonsoonSoundEvents.init();
 
         /* Networking */
+        MonsoonNetworking.registerTypes();
         MonsoonNetworking.registerC2SPackets();
 
         /* Events */
-        StartGameEvent.EVENT.register(new GameBeginEvent());
 
         LOGGER.info("Monsoons are brewing...");
     }

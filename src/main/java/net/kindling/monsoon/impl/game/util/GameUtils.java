@@ -1,5 +1,6 @@
 package net.kindling.monsoon.impl.game.util;
 
+import net.kindling.monsoon.api.event.PlayerGameDeathEvent;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,8 +21,10 @@ public class GameUtils {
 
     // Kills the player using the component, do not actually kill the player.
     public static void killPlayer(PlayerEntity player) {
-        PlayerGameComponent game = PlayerGameComponent.KEY.get(player);
-        game.setDead(true);
+        PlayerGameComponent component = PlayerGameComponent.KEY.get(player);
+        component.setDead(true);
+
+        PlayerGameDeathEvent.EVENT.invoker().playerDeath(player, player.getWorld(), component);
 
         if (player instanceof ServerPlayerEntity serverPlayer) serverPlayer.changeGameMode(GameMode.SPECTATOR);
     }
@@ -32,8 +35,8 @@ public class GameUtils {
     }
 
     public static void setHeldStack(PlayerEntity player, ItemStack givenStack) {
-        PlayerGameComponent game = PlayerGameComponent.KEY.get(player);
-        game.setHeldStack(givenStack);
+        PlayerGameComponent component = PlayerGameComponent.KEY.get(player);
+        component.setHeldStack(givenStack);
     }
 
     // "Held Stack" was meant to replace the inventory, as in being able to pick up blocks in one hand and use items in another. This functionality prolly makes more sense qwq
@@ -41,11 +44,11 @@ public class GameUtils {
         return player.getMainHandStack().isEmpty() ? player.getOffHandStack() : player.getMainHandStack();
     }
 
-    public int ticksToSeconds(int ticks) {
+    public static int ticksToSeconds(int ticks) {
         return ticks / 20;
     }
 
-    public int getInTicks(int seconds, int minutes) {
+    public static int getInTicks(int seconds, int minutes) {
         return (minutes * 60 * 20) + (seconds * 20);
     }
 }

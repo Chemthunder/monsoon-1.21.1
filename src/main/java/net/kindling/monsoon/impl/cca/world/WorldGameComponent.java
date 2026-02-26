@@ -37,6 +37,7 @@ public class WorldGameComponent implements AutoSyncedComponent, CommonTickingCom
     public void tick() {
         if (this.active) {
             this.ticks++;
+            if (this.ticks % 40 == 0) this.sync(); // syncs every 2s
         }
     }
 
