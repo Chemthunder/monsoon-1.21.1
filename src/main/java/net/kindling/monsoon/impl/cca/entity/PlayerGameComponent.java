@@ -16,6 +16,7 @@ public class PlayerGameComponent implements AutoSyncedComponent {
 
     private boolean suited = false; // Whether the player currently has a suit on or not.
     private boolean dead = false; // Whether the player is dead or not.
+    private boolean isFlashlightActive = false; // Wehter the flashlight is active or not.
 
     private ItemStack heldStack = ItemStack.EMPTY; // Currently held item, may remove.
 
@@ -30,6 +31,7 @@ public class PlayerGameComponent implements AutoSyncedComponent {
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.suited = nbt.getBoolean("Suited");
         this.dead = nbt.getBoolean("Dead");
+        this.isFlashlightActive = nbt.getBoolean("IsFlashlightActive");
 
         if (nbt.contains("HeldStack", NbtElement.COMPOUND_TYPE)) {
             NbtCompound compound = nbt.getCompound("HeldStack");
@@ -42,6 +44,7 @@ public class PlayerGameComponent implements AutoSyncedComponent {
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbt.putBoolean("Suited", this.suited);
         nbt.putBoolean("Dead", this.dead);
+        nbt.putBoolean("IsFlashlightActive", this.isFlashlightActive);
 
         if (!this.heldStack.isEmpty()) {
             nbt.put("HeldStack", this.heldStack.encode(wrapperLookup));
@@ -72,6 +75,15 @@ public class PlayerGameComponent implements AutoSyncedComponent {
 
     public void setHeldStack(ItemStack heldStack) {
         this.heldStack = heldStack;
+        this.sync();
+    }
+
+    public boolean getFlashlightActivity() {
+        return this.isFlashlightActive;
+    }
+
+    public void setFlashlightActivity(boolean value) {
+        this.isFlashlightActive = value;
         this.sync();
     }
 }
