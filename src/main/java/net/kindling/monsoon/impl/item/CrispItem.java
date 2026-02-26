@@ -31,6 +31,7 @@ public class CrispItem extends SpecialItem implements ColorableItem {
 
         if (world.isClient()) {
             CurrencyReadoutEvent.setUseTime(200);
+            CurrencyReadoutEvent.flashColor(0xFFae6144, 200);
         }
 
         component.setCurrency(component.getCurrency() + 1);

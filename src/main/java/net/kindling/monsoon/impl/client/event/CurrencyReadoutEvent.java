@@ -5,6 +5,7 @@ import net.kindling.monsoon.impl.MonsoonClient;
 import net.kindling.monsoon.impl.cca.entity.CurrencyGameComponent;
 import net.kindling.monsoon.impl.index.MonsoonItems;
 import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
+import net.kindling.monsoon.impl.util.Easing;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -27,6 +28,32 @@ public class CurrencyReadoutEvent implements HudRenderCallback {
     private static int useTicks = 0;
     private static float alpha = 0f;
 
+    private static int flashColor = 0xFFFFFF;
+
+    private static int flashFadeTicks = 8;
+    private static int flashHoldTicks = 0;
+
+    private static int flashTimer = 0;
+    private static int flashTotalDuration = 0;
+
+    private static int currentFlashColor = 0xFFFFFF;
+
+    private static Easing flashEasing = Easing.easeInOutCubic;
+
+    public static void flashColor(int hex, int holdTicks, int fadeTicks, Easing easing) {
+        flashColor = hex & 0xFFFFFF;
+        flashHoldTicks = holdTicks;
+        flashFadeTicks = fadeTicks;
+        flashEasing = easing;
+
+        flashTotalDuration = fadeTicks + holdTicks + fadeTicks;
+        flashTimer = flashTotalDuration;
+    }
+
+    public static void flashColor(int hex, int holdTicks) {
+        flashColor(hex, holdTicks, 8, Easing.easeInOutCubic);
+    }
+
     public static void toggleUse(boolean value) {
         if (!value) useTicks = 0;
         else alpha = 1f;
@@ -36,7 +63,6 @@ public class CurrencyReadoutEvent implements HudRenderCallback {
         useTicks = ticks;
     }
 
-    @Override
     public void onHudRender(DrawContext context, RenderTickCounter tickCounter) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return;
@@ -71,7 +97,59 @@ public class CurrencyReadoutEvent implements HudRenderCallback {
             }
         }
 
+        updateFlash();
         render(context);
+    }
+
+    private void updateFlash() {
+        if (flashTimer <= 0) {
+            currentFlashColor = 0xFFFFFF;
+            return;
+        }
+
+        flashTimer--;
+
+        int fadeInEnd = flashTotalDuration - flashFadeTicks;
+        int holdEnd = flashFadeTicks;
+
+        float progress;
+
+        if (flashTimer >= fadeInEnd) {
+            float t = 1f - (flashTimer - fadeInEnd) / (float) flashFadeTicks;
+            progress = applyEasing(t);
+        }
+
+        else if (flashTimer >= holdEnd) {
+            progress = 1f;
+        }
+
+        else {
+            float t = flashTimer / (float) flashFadeTicks;
+            progress = applyEasing(t);
+        }
+
+        currentFlashColor = lerpColor(0xFFFFFF, flashColor, progress);
+    }
+
+    private float applyEasing(float t) {
+        t = Math.max(0f, Math.min(1f, t));
+        return flashEasing.getFunction().apply((double)t).floatValue();
+    }
+
+    private int lerpColor(int from, int to, float t) {
+        int r1 = (from >> 16) & 0xFF;
+        int g1 = (from >> 8) & 0xFF;
+        int b1 = from & 0xFF;
+
+        int r2 = (to >> 16) & 0xFF;
+        int g2 = (to >> 8) & 0xFF;
+        int b2 = to & 0xFF;
+
+        int r = (int)(r1 + (r2 - r1) * t);
+        int g = (int)(g1 + (g2 - g1) * t);
+        int b = (int)(b1 + (b2 - b1) * t);
+
+        return (r << 16) | (g << 8) | b;
     }
 
     private void render(DrawContext context) {
@@ -85,7 +163,8 @@ public class CurrencyReadoutEvent implements HudRenderCallback {
         int posY = centerY - 120;
 
         int alphaInt = (int)(alpha * 255f);
-        int color = (alphaInt << 24) | 0x00ffffff;
+        int flashRGB = currentFlashColor & 0x00FFFFFF;
+        int color = (alphaInt << 24) | flashRGB;
 
         context.drawItem(new ItemStack(MonsoonItems.CRISP), posX, posY);
 
@@ -131,17 +210,24 @@ public class CurrencyReadoutEvent implements HudRenderCallback {
                 }
 
                 if (t < 1f) {
+
+                    int oldAlpha = (int)(alphaInt * (1f - t));
+                    int newAlpha = (int)(alphaInt * t);
+
+                    int oldColor = (oldAlpha << 24) | flashRGB;
+                    int newColor = (newAlpha << 24) | flashRGB;
+
                     context.drawTextWithShadow(tr,
                             Text.literal(String.valueOf(prevChar)),
                             x,
                             (int)(y + offsetOld),
-                            color);
+                            oldColor);
 
                     context.drawTextWithShadow(tr,
                             Text.literal(String.valueOf(currChar)),
                             x,
                             (int)(y + offsetNew),
-                            color);
+                            newColor);
                 } else {
                     context.drawTextWithShadow(tr,
                             Text.literal(String.valueOf(currChar)),
