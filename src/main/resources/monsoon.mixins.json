@@ -6,7 +6,8 @@
   "mixins": [
     "HungerManagerMixin",
     "ItemMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "access.ItemComponentAccessor"
   ],
   "client": [
     "client.BackgroundRendererMixin",
