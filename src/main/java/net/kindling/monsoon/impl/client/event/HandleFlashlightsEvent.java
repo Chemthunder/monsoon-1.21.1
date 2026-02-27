@@ -29,7 +29,7 @@ public class HandleFlashlightsEvent implements VeilRenderLevelStageEvent, Client
         float partialTicks = deltaTracker.getTickDelta(false);
 
         // Flashlights
-        if (stage == VeilRenderLevelStageEvent.Stage.AFTER_SKY) {
+        if (stage == Stage.AFTER_LEVEL) {
             for (AbstractClientPlayerEntity player : MinecraftClient.getInstance().world.getPlayers()) {
                 if (player != null) {
                     PlayerGameComponent playerComponent = PlayerGameComponent.KEY.get(player);
