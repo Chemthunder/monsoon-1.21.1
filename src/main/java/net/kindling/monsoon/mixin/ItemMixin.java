@@ -1,6 +1,6 @@
 package net.kindling.monsoon.mixin;
 
-import net.kindling.monsoon.impl.item.CrispItem;
+import net.kindling.monsoon.api.item.ExcedesMaxStackCountItem;
 import net.kindling.monsoon.mixin.access.ItemComponentAccessor;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
@@ -16,15 +16,18 @@ public abstract class ItemMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void modifyMaxCount(Item.Settings settings, CallbackInfo ci) {
         Item self = (Item)(Object)this;
-        ComponentMap stackMap = self.getComponents();
 
-        Integer sizeMap = stackMap.get(DataComponentTypes.MAX_STACK_SIZE);
+        if (self instanceof ExcedesMaxStackCountItem item) {
+            ComponentMap stackMap = self.getComponents();
 
-        if (sizeMap != null && sizeMap == 64) {
-            ComponentMap.Builder builder = ComponentMap.builder();
-            builder.addAll(stackMap);
-            builder.add(DataComponentTypes.MAX_STACK_SIZE, 99); // max is 99
-            ((ItemComponentAccessor) self).setComponents(builder.build());
+            Integer sizeMap = stackMap.get(DataComponentTypes.MAX_STACK_SIZE);
+
+            if (sizeMap != null && sizeMap == 64) {
+                ComponentMap.Builder builder = ComponentMap.builder();
+                builder.addAll(stackMap);
+                builder.add(DataComponentTypes.MAX_STACK_SIZE, item.getMaxStackSize()); // max is 99
+                ((ItemComponentAccessor) self).setComponents(builder.build());
+            }
         }
     }
 }
