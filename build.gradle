@@ -90,6 +90,9 @@ dependencies {
         exclude group: "maven.modrinth"
     }
 
+    // Audio Engine
+    modImplementation "maven.modrinth:melody:1.0.10-1.21-fabric"
+
     // Extras
     modImplementation "maven.modrinth:carpet:${project.carpet_version}"
 }

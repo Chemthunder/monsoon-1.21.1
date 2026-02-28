@@ -1,7 +1,7 @@
 package net.kindling.monsoon.impl.item;
 
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
-import net.kindling.monsoon.api.item.ExcedesMaxStackCountItem;
+import net.kindling.monsoon.api.item.ExceedsMaxStackCountItem;
 import net.kindling.monsoon.api.item.SpecialItem;
 import net.kindling.monsoon.impl.cca.entity.CurrencyGameComponent;
 import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class CrispItem extends SpecialItem implements ColorableItem, ExcedesMaxStackCountItem {
+public class CrispItem extends SpecialItem implements ColorableItem, ExceedsMaxStackCountItem {
     public CrispItem(Settings settings) {
         super(settings);
     }
