@@ -1,6 +1,5 @@
 package net.kindling.monsoon.impl.block.entity;
 
-import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.minecraft.block.Block;
@@ -8,14 +7,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import static net.acoyt.acornlib.api.util.MiscUtils.ifDev;
 
 public class CreditsBlockEntity extends BlockEntity {
     @Nullable private Author author = Author.KINDLING;
@@ -34,7 +29,7 @@ public class CreditsBlockEntity extends BlockEntity {
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if (this.getWorld() != null) {
+        if (world != null) {
             this.age++;
             if (this.age % 40 == 0) this.updateListeners();
 

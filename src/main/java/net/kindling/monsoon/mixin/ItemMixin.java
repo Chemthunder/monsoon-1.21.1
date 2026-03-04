@@ -1,6 +1,6 @@
 package net.kindling.monsoon.mixin;
 
-import net.kindling.monsoon.impl.item.CrispItem;
+import net.kindling.monsoon.impl.index.MonsoonItems;
 import net.kindling.monsoon.mixin.access.ItemComponentAccessor;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
@@ -20,7 +20,7 @@ public abstract class ItemMixin {
 
         Integer sizeMap = stackMap.get(DataComponentTypes.MAX_STACK_SIZE);
 
-        if (sizeMap != null && sizeMap == 64) {
+        if (sizeMap != null && sizeMap == 64 && self == MonsoonItems.CRISP) {
             ComponentMap.Builder builder = ComponentMap.builder();
             builder.addAll(stackMap);
             builder.add(DataComponentTypes.MAX_STACK_SIZE, 99); // max is 99

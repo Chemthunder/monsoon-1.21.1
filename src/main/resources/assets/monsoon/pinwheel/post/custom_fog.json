@@ -1,9 +1,9 @@
 {
-  "stages": [
-    {
-      "type": "veil:blit",
-      "shader": "monsoon:custom_fog",
-      "in": "minecraft:main"
-    }
-  ]
+    "stages": [
+        {
+            "type": "veil:blit",
+            "shader": "monsoon:custom_fog",
+            "in": "minecraft:main"
+        }
+    ]
 }

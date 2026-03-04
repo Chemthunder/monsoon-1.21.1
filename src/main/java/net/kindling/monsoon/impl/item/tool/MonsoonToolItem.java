@@ -1,4 +1,4 @@
-package net.kindling.monsoon.impl.item;
+package net.kindling.monsoon.impl.item.tool;
 
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import net.kindling.monsoon.impl.index.MonsoonDataComponents;
@@ -16,7 +16,7 @@ public class MonsoonToolItem extends Item implements ColorableItem {
     String brokenKey;
 
     public MonsoonToolItem(Settings settings, String fixedKey, String brokenKey) {
-        super(settings.component(MonsoonDataComponents.REPAIRED, false));
+        super(settings.maxCount(1).component(MonsoonDataComponents.REPAIRED, false));
 
         this.fixedKey = fixedKey;
         this.brokenKey = brokenKey;
@@ -30,10 +30,6 @@ public class MonsoonToolItem extends Item implements ColorableItem {
         }
 
         super.appendTooltip(stack, context, tooltip, type);
-    }
-
-    public int getMaxCount() {
-        return 1;
     }
 
     public int startColor(ItemStack itemStack) {

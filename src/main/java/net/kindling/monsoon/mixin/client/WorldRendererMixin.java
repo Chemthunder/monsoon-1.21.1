@@ -2,7 +2,6 @@ package net.kindling.monsoon.mixin.client;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.game.util.GameUtils;
 import net.minecraft.client.MinecraftClient;

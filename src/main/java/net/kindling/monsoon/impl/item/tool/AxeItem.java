@@ -4,7 +4,6 @@ import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.index.MonsoonDataComponents;
-import net.kindling.monsoon.impl.item.MonsoonToolItem;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

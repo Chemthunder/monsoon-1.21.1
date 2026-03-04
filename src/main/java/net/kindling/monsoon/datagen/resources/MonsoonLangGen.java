@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.kindling.monsoon.impl.event.KeyInputHandler;
 import net.kindling.monsoon.impl.index.MonsoonBlocks;
-import net.kindling.monsoon.impl.index.MonsoonItemGroups;
 import net.kindling.monsoon.impl.index.MonsoonItems;
 import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.minecraft.registry.RegistryWrapper;

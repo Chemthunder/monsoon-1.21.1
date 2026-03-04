@@ -44,6 +44,12 @@ repositories {
         name = 'BlameJared Maven (CrT / Bookshelf)'
         url = 'https://maven.blamejared.com'
     }
+
+    // Appleskin
+    maven {
+        name "appleskin"
+        url "https://maven.ryanliptak.com/"
+    }
 }
 
 loom {
@@ -79,19 +85,22 @@ dependencies {
     modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
     modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-world:${project.cca_version}")
 
-    // mixinsquared
+    // MixinSquared
     include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${project.mixinsquared_version}")))
 
-    // trinkets
+    // Trinkets
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")
 
-    // veil
+    // Veil
     modImplementation("foundry.veil:veil-fabric-${project.minecraft_version}:${project.veil_version}") {
         exclude group: "maven.modrinth"
     }
 
     // Extras
     modImplementation "maven.modrinth:carpet:${project.carpet_version}"
+    modCompileOnly("squeek.appleskin:appleskin-fabric:${project.appleskin_version}:api") {
+        transitive = false
+    }
 }
 
 processResources {

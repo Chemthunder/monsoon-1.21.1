@@ -1,5 +1,6 @@
 package net.kindling.monsoon.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.kindling.monsoon.impl.Monsoon;
@@ -103,4 +104,9 @@ public abstract class InGameHudMixin {
             ci.cancel();
         }
     }
+
+    //@ModifyExpressionValue(method = "renderHotbar", at = @At(value = "CONSTANT", args = "intValue=9"))
+    //private int monsoon$hotbarSize(int original) {
+    //    return 5;
+    //}
 }

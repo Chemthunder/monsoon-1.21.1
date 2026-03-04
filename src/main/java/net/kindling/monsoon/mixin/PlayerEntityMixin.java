@@ -1,9 +1,8 @@
 package net.kindling.monsoon.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.kindling.monsoon.impl.MonsoonClient;
 import net.kindling.monsoon.impl.game.util.GameUtils;
-import net.kindling.monsoon.impl.item.MonsoonToolItem;
+import net.kindling.monsoon.impl.item.tool.MonsoonToolItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

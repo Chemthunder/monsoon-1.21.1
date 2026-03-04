@@ -3,6 +3,7 @@ package net.kindling.monsoon.impl.game.util;
 import net.kindling.monsoon.api.event.PlayerGameDeathEvent;
 import net.kindling.monsoon.impl.Monsoon;
 import net.kindling.monsoon.impl.cca.entity.PlayerGameComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
@@ -14,9 +15,9 @@ import net.minecraft.world.World;
 public class GameUtils {
     public static RegistryKey<World> wastelandKey = RegistryKey.of(RegistryKeys.WORLD, Monsoon.id("wasteland"));
 
-    // Server-Side check
-    public static boolean isAliveAndInSurvival(PlayerEntity player) {
-        return player != null && !player.isInCreativeMode() && !PlayerGameComponent.KEY.get(player).isDead();
+    // Common check
+    public static boolean isAliveAndInSurvival(Entity entity) {
+        return entity instanceof PlayerEntity player && !player.isInCreativeMode();
     }
 
     // Kills the player using the component, do not actually kill the player.
@@ -30,8 +31,8 @@ public class GameUtils {
     }
 
     // Checks if the player is in the custom dimension.
-    public static boolean isInWasteland(PlayerEntity player) {
-        return player != null && player.getWorld().getRegistryKey().equals(wastelandKey);
+    public static boolean isInWasteland(Entity entity) {
+        return entity != null && entity.getWorld().getRegistryKey().equals(wastelandKey);
     }
 
     public static void setHeldStack(PlayerEntity player, ItemStack givenStack) {
