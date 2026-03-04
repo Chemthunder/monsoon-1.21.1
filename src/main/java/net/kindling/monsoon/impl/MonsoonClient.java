@@ -8,8 +8,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.kindling.monsoon.compat.AppleskinCompat;
 import net.kindling.monsoon.impl.client.audio.MonsoonAudioEngine;
+import net.kindling.monsoon.impl.client.event.AudioEngineEvents;
 import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
-import net.kindling.monsoon.impl.client.event.HandleFlashlightsEvent;
+import net.kindling.monsoon.impl.client.event.FlashlightEvents;
 import net.kindling.monsoon.impl.client.event.HeldItemDisplayHudEvent;
 import net.kindling.monsoon.impl.event.KeyInputHandler;
 import net.kindling.monsoon.impl.game.util.GameUtils;
@@ -22,22 +23,6 @@ public class MonsoonClient implements ClientModInitializer {
     public static final MonsoonAudioEngine AUDIO_ENGINE = new MonsoonAudioEngine();
 
     public void onInitializeClient() {
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            AUDIO_ENGINE.scanAndLoad("monsoon", "audio")
-                    .thenRun(() ->
-                            System.out.println("[Monsoon] Audio Engine successfully loaded")
-                    );
-        });
-
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-            AUDIO_ENGINE.stopAndUnloadAll()
-                    .thenRun(() -> System.out.println("[Monsoon] Audio Engine unloaded"));
-        });
-
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            AUDIO_ENGINE.tick();
-        });
-
         /* Initialization */
         MonsoonBlockEntities.clientInit();
         MonsoonBlocks.clientInit();
@@ -53,8 +38,12 @@ public class MonsoonClient implements ClientModInitializer {
         HudRenderCallback.EVENT.register(new HeldItemDisplayHudEvent());
         HudRenderCallback.EVENT.register(new CurrencyReadoutEvent());
 
-        ClientPlayConnectionEvents.DISCONNECT.register(new HandleFlashlightsEvent());
-        VeilEventPlatform.INSTANCE.onVeilRenderLevelStage(new HandleFlashlightsEvent());
+        ClientPlayConnectionEvents.DISCONNECT.register(new FlashlightEvents.Disconnect());
+        VeilEventPlatform.INSTANCE.onVeilRenderLevelStage(new FlashlightEvents.Render());
+
+        ClientPlayConnectionEvents.JOIN.register(new AudioEngineEvents.Join());
+        ClientPlayConnectionEvents.DISCONNECT.register(new AudioEngineEvents.Disconnect());
+        ClientTickEvents.END_CLIENT_TICK.register(new AudioEngineEvents.Tick());
 
         KeyInputHandler.register();
 
