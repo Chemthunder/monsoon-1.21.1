@@ -1,10 +1,14 @@
 package net.kindling.monsoon.impl.block;
 
 import com.mojang.serialization.MapCodec;
+import de.keksuccino.melody.resources.audio.openal.ALException;
+import net.kindling.monsoon.impl.MonsoonClient;
 import net.kindling.monsoon.impl.block.entity.SwitchBlockEntity;
+import net.kindling.monsoon.impl.client.audio.DynamicTrack;
 import net.kindling.monsoon.impl.index.MonsoonBlockEntities;
 import net.kindling.monsoon.impl.index.MonsoonSoundEvents;
 import net.kindling.monsoon.impl.util.ModUtils;
+import net.kindling.monsoon.impl.util.ToastHelper;
 import net.kindling.monsoon.impl.util.WorldBroadcastManager;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,6 +22,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -25,6 +30,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import static net.kindling.monsoon.impl.Monsoon.id;
 
 public class SwitchBlock extends BlockWithEntity implements Waterloggable {
     public static final MapCodec<SwitchBlock> CODEC = createCodec(SwitchBlock::new);
@@ -56,6 +63,23 @@ public class SwitchBlock extends BlockWithEntity implements Waterloggable {
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (world.isClient()) {
+            ToastHelper.showMusicToast("meowow", "whore");
+
+            Identifier id = id("audio/ambiance/thundernearby.ogg");
+
+            DynamicTrack track = MonsoonClient.AUDIO_ENGINE.get(id);
+
+            if (track != null) {
+                try {
+                    track.setIntensity(1);
+                    track.play(0f, false);
+                } catch (ALException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         if (world.getBlockEntity(pos) instanceof SwitchBlockEntity switchBlock) {
             switchBlock.flip();
 

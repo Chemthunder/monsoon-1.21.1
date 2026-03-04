@@ -3,7 +3,7 @@
     "bed_works": true,
     "coordinate_scale": 1.0,
     "effects": "minecraft:test",
-    "has_ceiling": true,
+    "has_ceiling": false,
     "has_raids": true,
     "has_skylight": false,
     "height": 320,
