@@ -2,10 +2,12 @@ package net.kindling.monsoon.impl;
 
 import foundry.veil.platform.VeilEventPlatform;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.kindling.monsoon.compat.AppleskinCompat;
+import net.kindling.monsoon.impl.client.audio.MonsoonAudioEngine;
 import net.kindling.monsoon.impl.client.event.CurrencyReadoutEvent;
 import net.kindling.monsoon.impl.client.event.HandleFlashlightsEvent;
 import net.kindling.monsoon.impl.client.event.HeldItemDisplayHudEvent;
@@ -17,7 +19,25 @@ import net.minecraft.client.MinecraftClient;
 import squeek.appleskin.api.event.HUDOverlayEvent;
 
 public class MonsoonClient implements ClientModInitializer {
+    public static final MonsoonAudioEngine AUDIO_ENGINE = new MonsoonAudioEngine();
+
     public void onInitializeClient() {
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            AUDIO_ENGINE.scanAndLoad("monsoon", "audio")
+                    .thenRun(() ->
+                            System.out.println("[Monsoon] Audio Engine successfully loaded")
+                    );
+        });
+
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+            AUDIO_ENGINE.stopAndUnloadAll()
+                    .thenRun(() -> System.out.println("[Monsoon] Audio Engine unloaded"));
+        });
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            AUDIO_ENGINE.tick();
+        });
+
         /* Initialization */
         MonsoonBlockEntities.clientInit();
         MonsoonBlocks.clientInit();
