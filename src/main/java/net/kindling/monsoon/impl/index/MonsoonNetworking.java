@@ -10,9 +10,10 @@ public interface MonsoonNetworking {
     }
 
     static void registerC2SPackets() {
+        ServerPlayNetworking.registerGlobalReceiver(FlashlightTogglePayload.ID, new FlashlightTogglePayload.Receiver());
     }
 
     static void registerS2CPackets() {
-        ServerPlayNetworking.registerGlobalReceiver(FlashlightTogglePayload.ID, new FlashlightTogglePayload.Receiver());
+        //
     }
 }
