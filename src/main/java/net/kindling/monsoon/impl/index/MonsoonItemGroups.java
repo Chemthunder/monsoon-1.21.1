@@ -30,5 +30,18 @@ public interface MonsoonItemGroups {
         for (Block BLOCKS : MonsoonBlocks.BLOCKS.toRegister) {
             itemGroup.add(BLOCKS);
         }
+
+        ItemStack repairedAxe = new ItemStack(MonsoonItems.AXE);
+        repairedAxe.set(MonsoonDataComponents.REPAIRED, true);
+
+        ItemStack repairedPick = new ItemStack(MonsoonItems.PICKAXE);
+        repairedPick.set(MonsoonDataComponents.REPAIRED, true);
+
+        ItemStack repairedShovel = new ItemStack(MonsoonItems.SHOVEL);
+        repairedShovel.set(MonsoonDataComponents.REPAIRED, true);
+
+        itemGroup.addAfter(MonsoonItems.AXE, repairedAxe);
+        itemGroup.addAfter(MonsoonItems.PICKAXE, repairedPick);
+        itemGroup.addAfter(MonsoonItems.SHOVEL, repairedShovel);
     }
 }
